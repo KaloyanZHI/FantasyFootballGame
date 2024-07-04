@@ -1,0 +1,772 @@
+[
+  {
+    "firstName": "David",
+    "lastName": "Raya",
+    "realTeam": "1",
+    "playerPosition": "GK",
+    "price": 5.1
+  },
+  {
+    "firstName": "Benjamin",
+    "lastName": "White",
+    "realTeam": "1",
+    "playerPosition": "DEF",
+    "price": 8.0
+  },
+  {
+    "firstName": "William",
+    "lastName": "Saliba",
+    "realTeam": "1",
+    "playerPosition": "DEF",
+    "price": 7.1
+  },
+  {
+    "firstName": "Gabriel",
+    "lastName": "Magalhaes",
+    "realTeam": "1",
+    "playerPosition": "DEF",
+    "price": 7.1
+  },
+  {
+    "firstName": "Oleksandr",
+    "lastName": "Zinchenko",
+    "realTeam": "1",
+    "playerPosition": "DEF",
+    "price": 6.8
+  },
+  {
+    "firstName": "Declan",
+    "lastName": "Rice",
+    "realTeam": "1",
+    "playerPosition": "MID",
+    "price": 7.4
+  },
+  {
+    "firstName": "Kai",
+    "lastName": "Havertz",
+    "realTeam": "1",
+    "playerPosition": "MID",
+    "price": 9.4
+  },
+  {
+    "firstName": "Martin",
+    "lastName": "Odegaard",
+    "realTeam": "1",
+    "playerPosition": "MID",
+    "price": 10.5
+  },
+  {
+    "firstName": "Bukayo",
+    "lastName": "Saka",
+    "realTeam": "1",
+    "playerPosition": "MID",
+    "price": 10.5
+  },
+  {
+    "firstName": "Gabriel",
+    "lastName": "Martinelli",
+    "realTeam": "1",
+    "playerPosition": "MID",
+    "price": 9.3
+  },
+  {
+    "firstName": "Gabriel",
+    "lastName": "Jesus",
+    "realTeam": "1",
+    "playerPosition": "ATT",
+    "price": 7.0
+  },
+  {
+    "firstName": "Ederson",
+    "lastName": "Moraes",
+    "realTeam": "2",
+    "playerPosition": "GK",
+    "price": 7.3
+  },
+  {
+    "firstName": "Manuel",
+    "lastName": "Akanji",
+    "realTeam": "2",
+    "playerPosition": "DEF",
+    "price": 6.8
+  },
+  {
+    "firstName": "Josko",
+    "lastName": "Gvardiol",
+    "realTeam": "2",
+    "playerPosition": "DEF",
+    "price": 6.0
+  },
+  {
+    "firstName": "Ruben",
+    "lastName": "Dias",
+    "realTeam": "2",
+    "playerPosition": "DEF",
+    "price": 7.3
+  },
+  {
+    "firstName": "Kyle",
+    "lastName": "Walker",
+    "realTeam": "2",
+    "playerPosition": "DEF",
+    "price": 7.4
+  },
+  {
+    "firstName": "Phil",
+    "lastName": "Foden",
+    "realTeam": "2",
+    "playerPosition": "MID",
+    "price": 10.3
+  },
+  {
+    "firstName": "Kevin",
+    "lastName": "De Bruyne",
+    "realTeam": "2",
+    "playerPosition": "MID",
+    "price": 12.4
+  },
+  {
+    "firstName": "Bernardo",
+    "lastName": "Silva",
+    "realTeam": "2",
+    "playerPosition": "MID",
+    "price": 8.0
+  },
+  {
+    "firstName": "Jack",
+    "lastName": "Grealish",
+    "realTeam": "2",
+    "playerPosition": "MID",
+    "price": 9.0
+  },
+  {
+    "firstName": "Julian",
+    "lastName": "Alvarez",
+    "realTeam": "2",
+    "playerPosition": "ATT",
+    "price": 8.2
+  },
+  {
+    "firstName": "Erling",
+    "lastName": "Haaland",
+    "realTeam": "2",
+    "playerPosition": "ATT",
+    "price": 16.1
+  },
+  {
+    "firstName": "Alisson",
+    "lastName": "Becker",
+    "realTeam": "3",
+    "playerPosition": "GK",
+    "price": 7.5
+  },
+  {
+    "firstName": "Joe",
+    "lastName": "Gomez",
+    "realTeam": "3",
+    "playerPosition": "DEF",
+    "price": 6.5
+  },
+  {
+    "firstName": "Andrew",
+    "lastName": "Robertson",
+    "realTeam": "3",
+    "playerPosition": "DEF",
+    "price": 8.3
+  },
+  {
+    "firstName": "Virgil",
+    "lastName": "van Dijk",
+    "realTeam": "3",
+    "playerPosition": "DEF",
+    "price": 8.5
+  },
+  {
+    "firstName": "Trent",
+    "lastName": "Alexander-Arnold",
+    "realTeam": "3",
+    "playerPosition": "DEF",
+    "price": 10.2
+  },
+  {
+    "firstName": "Dominik",
+    "lastName": "Szoboszlai",
+    "realTeam": "3",
+    "playerPosition": "MID",
+    "price": 8.9
+  },
+  {
+    "firstName": "Alexis",
+    "lastName": "Mac Alister",
+    "realTeam": "3",
+    "playerPosition": "MID",
+    "price": 7.7
+  },
+  {
+    "firstName": "Wataru",
+    "lastName": "Endo",
+    "realTeam": "3",
+    "playerPosition": "MID",
+    "price": 7.2
+  },
+  {
+    "firstName": "Luis",
+    "lastName": "Diaz",
+    "realTeam": "3",
+    "playerPosition": "ATT",
+    "price": 9.4
+  },
+  {
+    "firstName": "Darwin",
+    "lastName": "Nunez",
+    "realTeam": "3",
+    "playerPosition": "ATT",
+    "price": 9.3
+  },
+  {
+    "firstName": "Mohamed",
+    "lastName": "Salah",
+    "realTeam": "3",
+    "playerPosition": "ATT",
+    "price": 15.2
+  },
+  {
+    "firstName": "Andre",
+    "lastName": "Onana",
+    "realTeam": "4",
+    "playerPosition": "GK",
+    "price": 6.8
+  },
+  {
+    "firstName": "Diogo",
+    "lastName": "Dalot",
+    "realTeam": "4",
+    "playerPosition": "DEF",
+    "price": 7
+  },
+  {
+    "firstName": "Harry",
+    "lastName": "Maguire",
+    "realTeam": "4",
+    "playerPosition": "DEF",
+    "price": 6.1
+  },
+  {
+    "firstName": "Victor",
+    "lastName": "Lindelof",
+    "realTeam": "4",
+    "playerPosition": "DEF",
+    "price": 6.3
+  },
+  {
+    "firstName": "Lisandro",
+    "lastName": "Martinez",
+    "realTeam": "4",
+    "playerPosition": "DEF",
+    "price": 6.5
+  },
+  {
+    "firstName": "Bruno",
+    "lastName": "Fernandes",
+    "realTeam": "4",
+    "playerPosition": "MID",
+    "price": 10.3
+  },
+  {
+    "firstName": "Carlos Henrique",
+    "lastName": "Casemiro",
+    "realTeam": "4",
+    "playerPosition": "MID",
+    "price": 7.1
+  },
+  {
+    "firstName": "Kobbie",
+    "lastName": "Mainoo",
+    "realTeam": "4",
+    "playerPosition": "MID",
+    "price": 6.2
+  },
+  {
+    "firstName": "Antony",
+    "lastName": "dos Santos",
+    "realTeam": "4",
+    "playerPosition": "ATT",
+    "price": 8.6
+  },
+  {
+    "firstName": "Alejandro",
+    "lastName": "Garnacho",
+    "realTeam": "4",
+    "playerPosition": "ATT",
+    "price": 6.8
+  },
+  {
+    "firstName": "Rasmus",
+    "lastName": "Holund",
+    "realTeam": "4",
+    "playerPosition": "ATT",
+    "price": 8.9
+  },
+  {
+    "firstName": "Robert",
+    "lastName": "Sanchez",
+    "realTeam": "5",
+    "playerPosition": "GK",
+    "price": 6.3
+  },
+  {
+    "firstName": "Axel",
+    "lastName": "Disasi",
+    "realTeam": "5",
+    "playerPosition": "DEF",
+    "price": 6.7
+  },
+  {
+    "firstName": "Marc",
+    "lastName": "Cucurella",
+    "realTeam": "5",
+    "playerPosition": "DEF",
+    "price": 6.7
+  },
+  {
+    "firstName": "Malo",
+    "lastName": "Gusto",
+    "realTeam": "5",
+    "playerPosition": "DEF",
+    "price": 6.1
+  },
+  {
+    "firstName": "Reece",
+    "lastName": "James",
+    "realTeam": "5",
+    "playerPosition": "DEF",
+    "price": 7.0
+  },
+  {
+    "firstName": "Enzo",
+    "lastName": "Fernandez",
+    "realTeam": "5",
+    "playerPosition": "MID",
+    "price": 6.6
+  },
+  {
+    "firstName": "Moises",
+    "lastName": "Caicedo",
+    "realTeam": "5",
+    "playerPosition": "MID",
+    "price": 6.3
+  },
+  {
+    "firstName": "Conor",
+    "lastName": "Gallagher",
+    "realTeam": "5",
+    "playerPosition": "MID",
+    "price": 7.2
+  },
+  {
+    "firstName": "Raheem",
+    "lastName": "Sterling",
+    "realTeam": "5",
+    "playerPosition": "ATT",
+    "price": 8.6
+  },
+  {
+    "firstName": "Cole",
+    "lastName": "Palmer",
+    "realTeam": "5",
+    "playerPosition": "ATT",
+    "price": 8.1
+  },
+  {
+    "firstName": "Christopher",
+    "lastName": "Nkunku",
+    "realTeam": "5",
+    "playerPosition": "ATT",
+    "price": 9.0
+  },
+  {
+    "firstName": "Thibaut",
+    "lastName": "Courtois",
+    "realTeam": "6",
+    "playerPosition": "GK",
+    "price": 7.7
+  },
+  {
+    "firstName": "Eder",
+    "lastName": "Militao",
+    "realTeam": "6",
+    "playerPosition": "DEF",
+    "price": 7.5
+  },
+  {
+    "firstName": "David",
+    "lastName": "Alaba",
+    "realTeam": "6",
+    "playerPosition": "DEF",
+    "price": 7.9
+  },
+  {
+    "firstName": "Antonio",
+    "lastName": "Rüdiger",
+    "realTeam": "6",
+    "playerPosition": "DEF",
+    "price": 8.0
+  },
+  {
+    "firstName": "Daniel",
+    "lastName": "Carvajal",
+    "realTeam": "6",
+    "playerPosition": "DEF",
+    "price": 7.3
+  },
+  {
+    "firstName": "Toni",
+    "lastName": "Kroos",
+    "realTeam": "6",
+    "playerPosition": "MID",
+    "price": 7.9
+  },
+  {
+    "firstName": "Luka",
+    "lastName": "Modric",
+    "realTeam": "6",
+    "playerPosition": "MID",
+    "price": 8.2
+  },
+  {
+    "firstName": "Jude",
+    "lastName": "Bellingham",
+    "realTeam": "6",
+    "playerPosition": "MID",
+    "price": 9.4
+  },
+  {
+    "firstName": "Vinicius",
+    "lastName": "Junior",
+    "realTeam": "6",
+    "playerPosition": "ATT",
+    "price": 10.2
+  },
+  {
+    "firstName": "Rodrygo",
+    "lastName": "de Goes",
+    "realTeam": "6",
+    "playerPosition": "ATT",
+    "price": 8.9
+  },
+  {
+    "firstName": "Eduardo",
+    "lastName": "Camavinga",
+    "realTeam": "6",
+    "playerPosition": "MID",
+    "price": 8.7
+  },
+  {
+    "firstName": "Marc-Andre",
+    "lastName": "ter Stegen",
+    "realTeam": "7",
+    "playerPosition": "GK",
+    "price": 7.6
+  },
+  {
+    "firstName": "Ronald",
+    "lastName": "Araujo",
+    "realTeam": "7",
+    "playerPosition": "DEF",
+    "price": 7.9
+  },
+  {
+    "firstName": "Andreas",
+    "lastName": "Christensen",
+    "realTeam": "7",
+    "playerPosition": "DEF",
+    "price": 6.9
+  },
+  {
+    "firstName": "Pau",
+    "lastName": "Cubarsi",
+    "realTeam": "7",
+    "playerPosition": "DEF",
+    "price": 6.5
+  },
+  {
+    "firstName": "Jules",
+    "lastName": "Kounde",
+    "realTeam": "7",
+    "playerPosition": "DEF",
+    "price": 7.0
+  },
+  {
+    "firstName": "Pablo",
+    "lastName": "Gavi",
+    "realTeam": "7",
+    "playerPosition": "MID",
+    "price": 8.5
+  },
+  {
+    "firstName": "Ilkay",
+    "lastName": "Gundogan",
+    "realTeam": "7",
+    "playerPosition": "MID",
+    "price": 8.0
+  },
+  {
+    "firstName": "Frenki",
+    "lastName": "de Jong",
+    "realTeam": "7",
+    "playerPosition": "MID",
+    "price": 8.2
+  },
+  {
+    "firstName": "Lamine",
+    "lastName": "Yamal",
+    "realTeam": "7",
+    "playerPosition": "ATT",
+    "price": 8.9
+  },
+  {
+    "firstName": "Raphinha",
+    "lastName": "",
+    "realTeam": "7",
+    "playerPosition": "ATT",
+    "price": 8.5
+  },
+  {
+    "firstName": "Robert",
+    "lastName": "Lewandowski",
+    "realTeam": "7",
+    "playerPosition": "ATT",
+    "price": 10.8
+  },
+  {
+    "firstName": "Manuel",
+    "lastName": "Neuer",
+    "realTeam": "8",
+    "playerPosition": "GK",
+    "price": 8.9
+  },
+  {
+    "firstName": "Matthijs",
+    "lastName": "de Ligt",
+    "realTeam": "8",
+    "playerPosition": "DEF",
+    "price": 9.0
+  },
+  {
+    "firstName": "Dayot",
+    "lastName": "Upamecano",
+    "realTeam": "8",
+    "playerPosition": "DEF",
+    "price": 8.3
+  },
+  {
+    "firstName": "Alphonso",
+    "lastName": "Davies",
+    "realTeam": "8",
+    "playerPosition": "DEF",
+    "price": 9.1
+  },
+  {
+    "firstName": "Joshua",
+    "lastName": "Kimmich",
+    "realTeam": "8",
+    "playerPosition": "DEF",
+    "price": 8.9
+  },
+  {
+    "firstName": "Leon",
+    "lastName": "Goretzka",
+    "realTeam": "8",
+    "playerPosition": "MID",
+    "price": 7.9
+  },
+  {
+    "firstName": "Jamal",
+    "lastName": "Musiala",
+    "realTeam": "8",
+    "playerPosition": "MID",
+    "price": 9.5
+  },
+  {
+    "firstName": "Kingsley",
+    "lastName": "Coman",
+    "realTeam": "8",
+    "playerPosition": "MID",
+    "price": 8.7
+  },
+  {
+    "firstName": "Leroy",
+    "lastName": "Sane",
+    "realTeam": "8",
+    "playerPosition": "MID",
+    "price": 8.7
+  },
+  {
+    "firstName": "Serge",
+    "lastName": "Gnabry",
+    "realTeam": "8",
+    "playerPosition": "MID",
+    "price": 8.9
+  },
+  {
+    "firstName": "Harry",
+    "lastName": "Kane",
+    "realTeam": "8",
+    "playerPosition": "ATT",
+    "price": 15.9
+  },
+  {
+    "firstName": "Mike",
+    "lastName": "Maignan",
+    "realTeam": "9",
+    "playerPosition": "GK",
+    "price": 6.3
+  },
+  {
+    "firstName": "Fikayo",
+    "lastName": "Tomori",
+    "realTeam": "9",
+    "playerPosition": "DEF",
+    "price": 6.9
+  },
+  {
+    "firstName": "Malik",
+    "lastName": "Thiaw",
+    "realTeam": "9",
+    "playerPosition": "DEF",
+    "price": 6.6
+  },
+  {
+    "firstName": "Pierre",
+    "lastName": "Kalulu",
+    "realTeam": "9",
+    "playerPosition": "DEF",
+    "price": 6.3
+  },
+  {
+    "firstName": "Theo",
+    "lastName": "Hernandez",
+    "realTeam": "9",
+    "playerPosition": "DEF",
+    "price": 7.0
+  },
+  {
+    "firstName": "Tijjani",
+    "lastName": "Reijnders",
+    "realTeam": "9",
+    "playerPosition": "MID",
+    "price": 7.5
+  },
+  {
+    "firstName": "Rafael",
+    "lastName": "Leao",
+    "realTeam": "9",
+    "playerPosition": "MID",
+    "price": 10.5
+  },
+  {
+    "firstName": "Christian",
+    "lastName": "Pulisic",
+    "realTeam": "9",
+    "playerPosition": "MID",
+    "price": 8.0
+  },
+  {
+    "firstName": "Noah",
+    "lastName": "Okafor",
+    "realTeam": "9",
+    "playerPosition": "MID",
+    "price": 7.9
+  },
+  {
+    "firstName": "Luka",
+    "lastName": "Jovic",
+    "realTeam": "9",
+    "playerPosition": "ATT",
+    "price": 8.5
+  },
+  {
+    "firstName": "Olivier",
+    "lastName": "Giroud",
+    "realTeam": "9",
+    "playerPosition": "ATT",
+    "price": 9.0
+  },
+  {
+    "firstName": "Gianluigi",
+    "lastName": "Donnarumma",
+    "realTeam": "10",
+    "playerPosition": "GK",
+    "price": 7.4
+  },
+  {
+    "firstName": "Marquinhos",
+    "lastName": "",
+    "realTeam": "10",
+    "playerPosition": "DEF",
+    "price": 8.1
+  },
+  {
+    "firstName": "Milan",
+    "lastName": "Skriniar",
+    "realTeam": "10",
+    "playerPosition": "DEF",
+    "price": 7.7
+  },
+  {
+    "firstName": "Presnel",
+    "lastName": "Kimpembe",
+    "realTeam": "10",
+    "playerPosition": "DEF",
+    "price": 7.5
+  },
+  {
+    "firstName": "Lucas",
+    "lastName": "Hernandez",
+    "realTeam": "10",
+    "playerPosition": "DEF",
+    "price": 7.8
+  },
+  {
+    "firstName": "Danilo",
+    "lastName": "Pereira",
+    "realTeam": "10",
+    "playerPosition": "MID",
+    "price": 7.0
+  },
+  {
+    "firstName": "Fabian",
+    "lastName": "Ruiz",
+    "realTeam": "10",
+    "playerPosition": "MID",
+    "price": 7.6
+  },
+  {
+    "firstName": "Ousmane",
+    "lastName": "Dembele",
+    "realTeam": "10",
+    "playerPosition": "MID",
+    "price": 8.8
+  },
+  {
+    "firstName": "Kylian",
+    "lastName": "Mbappe",
+    "realTeam": "10",
+    "playerPosition": "ATT",
+    "price": 16.0
+  },
+  {
+    "firstName": "Concalo",
+    "lastName": "Ramos",
+    "realTeam": "10",
+    "playerPosition": "ATT",
+    "price": 8.1
+  },
+  {
+    "firstName": "Randal Kolo",
+    "lastName": "Muani",
+    "realTeam": "10",
+    "playerPosition": "ATT",
+    "price": 10.2
+  }
+]
