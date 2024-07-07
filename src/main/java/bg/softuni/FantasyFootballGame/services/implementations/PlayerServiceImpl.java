@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
-    private static final String PLAYER_FILE_PATH = "C:\\SoftUni\\09. Spring Fundamentals\\FinalProject\\FantasyFootballGame\\src\\main\\resources\\static\\jsonData\\playersData.json";
+    private static final String PLAYER_FILE_PATH = "src/main/resources/jsonData/playersData.json";
     private final PlayerRepository playerRepository;
 
     private final RealTeamRepository realTeamRepository;

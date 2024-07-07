@@ -11,7 +11,7 @@ html, body {
 }
 
 body {
-    background-image: url('images/football3.jpg');
+    background-image: url('../images/football3.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }

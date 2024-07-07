@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 public class RealTeamServiceImpl implements RealTeamService {
-    private static final String REAL_TEAMS_FILE_PATH = "src/main/resources/static/jsonData/realTeams.json";
+    private static final String REAL_TEAMS_FILE_PATH = "src/main/resources/jsonData/realTeams.json";
     private final RealTeamRepository realTeamRepository;
     private final Gson gson;
 
