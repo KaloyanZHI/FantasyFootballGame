@@ -44,6 +44,22 @@ public class HomeController {
 
         return "/teams-and-players";
     }
+    @GetMapping("/my-team")
+    public String goMyTeam() {
+
+        return "my-team";
+    }
+    @GetMapping("/admin-tools")
+    public String goAdminTools() {
+
+        return "admin-tools";
+    }
+    @GetMapping("/logout")
+    public String goLogout() {
+
+        return "logout";
+    }
+
 
 
 

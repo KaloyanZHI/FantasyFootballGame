@@ -58,7 +58,7 @@ public class UserController {
 
 
 
-        return "redirect:/login";
+        return "redirect:/successful-register";
     }
     @GetMapping("/login")
     public String login() {
@@ -83,4 +83,10 @@ public class UserController {
 
         return "redirect:/home";
     }
+    @GetMapping("/successful-register")
+    public String goSuccessfulRegister() {
+
+        return "successful-register";
+    }
+
 }
