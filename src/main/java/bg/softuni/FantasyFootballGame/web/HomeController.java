@@ -19,30 +19,35 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String getHome() throws IOException {
+    public String getIndex() throws IOException {
 
         return "index";
+    }
+    @GetMapping("/home")
+    public String getHome() throws IOException {
+
+        return "home";
     }
 
     @GetMapping("/news")
     public String getNews() throws IOException {
 
-        return "/news";
+        return "news";
     }
     @GetMapping("/about")
     public String getAbout() throws IOException {
 
-        return "/about";
+        return "about";
     }
     @GetMapping("/rules")
     public String getRules() throws IOException {
 
-        return "/rules";
+        return "rules";
     }
     @GetMapping("/teams-and-players")
     public String getTeamAndPlayers() throws IOException {
 
-        return "/teams-and-players";
+        return "teams-and-players";
     }
     @GetMapping("/my-team")
     public String goMyTeam() {
