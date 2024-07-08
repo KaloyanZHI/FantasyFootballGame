@@ -66,23 +66,7 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String doLogin(
-            @Valid UserLoginDTO data,
-            BindingResult bindingResult,
-            RedirectAttributes redirectAttributes
 
-    ) {
-
-        if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("loginData", data);
-            redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingResult.loginData", bindingResult);
-            return "redirect:/login";
-        }
-
-        return "redirect:/home";
-    }
     @GetMapping("/successful-register")
     public String goSuccessfulRegister() {
 
