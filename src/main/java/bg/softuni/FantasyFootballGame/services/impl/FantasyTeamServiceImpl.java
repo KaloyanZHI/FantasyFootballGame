@@ -1,12 +1,9 @@
-package bg.softuni.FantasyFootballGame.services.implementations;
+package bg.softuni.FantasyFootballGame.services.impl;
 
 import bg.softuni.FantasyFootballGame.entities.FantasyTeam;
-import bg.softuni.FantasyFootballGame.entities.Player;
 import bg.softuni.FantasyFootballGame.repositories.FantasyTeamRepository;
 import bg.softuni.FantasyFootballGame.services.FantasyTeamService;
 import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
 
 @Service
 public class FantasyTeamServiceImpl implements FantasyTeamService {

@@ -1,6 +1,5 @@
-package bg.softuni.FantasyFootballGame.services.implementations;
+package bg.softuni.FantasyFootballGame.services.impl;
 
-import bg.softuni.FantasyFootballGame.dto.UserLoginDTO;
 import bg.softuni.FantasyFootballGame.dto.UserRegisterDTO;
 import bg.softuni.FantasyFootballGame.entities.User;
 import bg.softuni.FantasyFootballGame.repositories.UserRepository;

@@ -1,7 +1,7 @@
-package bg.softuni.FantasyFootballGame.services.implementations;
+package bg.softuni.FantasyFootballGame.services.impl;
 
 import bg.softuni.FantasyFootballGame.entities.Role;
-import bg.softuni.FantasyFootballGame.entities.UserRoles;
+import bg.softuni.FantasyFootballGame.entities.UserRolesEnum;
 import bg.softuni.FantasyFootballGame.repositories.RoleRepository;
 import bg.softuni.FantasyFootballGame.services.RoleService;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void seedRoles() {
         Role userRole = new Role();
-        userRole.setName(UserRoles.USER);
+        userRole.setName(UserRolesEnum.USER);
         roleRepository.save(userRole);
 
         Role adminRole = new Role();
-        adminRole.setName(UserRoles.ADMIN);
+        adminRole.setName(UserRolesEnum.ADMIN);
         roleRepository.save(adminRole);
     }
 }

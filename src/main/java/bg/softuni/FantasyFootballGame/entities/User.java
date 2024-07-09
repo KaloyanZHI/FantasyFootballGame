@@ -1,8 +1,11 @@
 package bg.softuni.FantasyFootballGame.entities;
 
 import jakarta.persistence.*;
+import org.springframework.data.repository.cdi.Eager;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,13 +27,18 @@ public class User {
 
     private String email;
 
-    @ManyToMany
-    private Set<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+
+    private List<Role> roles;
 
     private Integer budget;
 
     public User() {
-        this.roles = new HashSet<>();
+        this.roles = new ArrayList<>();
         this.budget = 100;
 
     }
@@ -79,11 +87,11 @@ public class User {
     }
 
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 

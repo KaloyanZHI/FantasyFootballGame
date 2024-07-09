@@ -1,4 +1,4 @@
-package bg.softuni.FantasyFootballGame.services.implementations;
+package bg.softuni.FantasyFootballGame.services.impl;
 
 import bg.softuni.FantasyFootballGame.entities.Player;
 import bg.softuni.FantasyFootballGame.dto.PlayerSeedDTO;

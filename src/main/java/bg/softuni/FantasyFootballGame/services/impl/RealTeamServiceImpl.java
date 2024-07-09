@@ -1,4 +1,4 @@
-package bg.softuni.FantasyFootballGame.services.implementations;
+package bg.softuni.FantasyFootballGame.services.impl;
 
 import bg.softuni.FantasyFootballGame.entities.RealTeam;
 import bg.softuni.FantasyFootballGame.repositories.RealTeamRepository;

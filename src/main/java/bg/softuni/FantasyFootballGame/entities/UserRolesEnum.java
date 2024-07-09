@@ -1,5 +1,5 @@
 package bg.softuni.FantasyFootballGame.entities;
 
-public enum UserRoles {
+public enum UserRolesEnum {
     USER, ADMIN
 }
