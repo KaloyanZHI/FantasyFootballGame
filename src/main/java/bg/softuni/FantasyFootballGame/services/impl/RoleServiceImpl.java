@@ -6,6 +6,10 @@ import bg.softuni.FantasyFootballGame.repositories.RoleRepository;
 import bg.softuni.FantasyFootballGame.services.RoleService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
@@ -16,12 +20,13 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void seedRoles() {
-        Role userRole = new Role();
-        userRole.setName(UserRolesEnum.USER);
-        roleRepository.save(userRole);
-
-        Role adminRole = new Role();
-        adminRole.setName(UserRolesEnum.ADMIN);
-        roleRepository.save(adminRole);
+        List<Role> roleList = new ArrayList<>();
+        Arrays.stream(UserRolesEnum.values())
+                .forEach(userRole -> {
+                    Role role = new Role();
+                    role.setName(userRole);
+                    roleList.add(role);
+                });
+        this.roleRepository.saveAll(roleList);
     }
 }
