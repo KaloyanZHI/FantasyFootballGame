@@ -1,32 +1,42 @@
 [
     {
-        "teamName": "Arsenal"
+        "teamName": "Arsenal",
+        "imageUrl": "https://www.arsenal.com/sites/default/files/styles/paragraph_group_three_column_large/public/images/Advantage%20Packs.jpg?auto=webp&itok=GqYV8yEp"
     },
     {
-        "teamName": "Manchester City"
+        "teamName": "Manchester City",
+        "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2023/02/2023-02-06T115024Z_595857697_RC26BY9AI43O_RTRMADP_3_SOCCER-ENGLAND-MCI-FINANCES.jpg?resize=1920%2C1440"
     },
     {
-        "teamName": "Liverpool"
+        "teamName": "Liverpool",
+        "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/230506134326-02-liverpool-national-anthem-coronation-050623-restricted.jpg?c=16x9&q=h_833,w_1480,c_fill"
     },
     {
-        "teamName": "Manchester United"
+        "teamName": "Manchester United",
+        "imageUrl": "https://s.inyourpocket.com/img/text/england/manchester/old-trafford-home-of-manchester-united-in_3.jpg"
     },
     {
-        "teamName": "Chelsea"
+        "teamName": "Chelsea",
+        "imageUrl": "https://www.talkchelsea.net/wp-content/uploads/2023/01/stamford-bridge-flag-chelsea.jpg"
     },
     {
-        "teamName": "Real Madrid"
+        "teamName": "Real Madrid",
+        "imageUrl": "https://cdn.vox-cdn.com/thumbor/Lu1hFod8SoUL6XK3FtIMDtu2nC4=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/25247567/1949850410.jpg"
     },
     {
-        "teamName": "Barcelona"
+        "teamName": "Barcelona",
+        "imageUrl": "https://www.fcbarcelona.com/fcbarcelona/photo/2018/03/13/3787e059-e4f8-4765-9c25-af66398ba8a0/Camp-Nou-Grass.jpg"
     },
     {
-        "teamName": "Bayern Munich"
+        "teamName": "Bayern Munich",
+        "imageUrl": "https://img.fcbayern.com/image/upload/t_cms-2x1/f_auto/w_1600%2Cc_fill/q_auto/v1701160974/cms/public/images/fcbayern-com/homepage/saison-18-19/galerien/magische-cl-naechte/14-fcbpsg-080323-ima.jpg"
     },
     {
-        "teamName": "AC Milan"
+        "teamName": "AC Milan",
+        "imageUrl": "https://www.sportsbreaks.com/images/banners/HeroBanner1400x600_77c87afe7615f2c3899147d1e9b7c102.jpg"
     },
     {
-        "teamName": "PSG"
+        "teamName": "PSG",
+        "imageUrl": "https://stadiumtour.psg.fr/media/stadium-tour-vestiaire-matchday.jpg"
     }
 ]

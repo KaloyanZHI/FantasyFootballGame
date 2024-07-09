@@ -44,11 +44,7 @@ public class HomeController {
 
         return "rules";
     }
-    @GetMapping("/teams-and-players")
-    public String getTeamAndPlayers() throws IOException {
 
-        return "teams-and-players";
-    }
     @GetMapping("/my-team")
     public String goMyTeam() {
 

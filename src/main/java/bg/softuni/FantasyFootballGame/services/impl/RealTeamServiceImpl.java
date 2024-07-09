@@ -37,6 +37,7 @@ public class RealTeamServiceImpl implements RealTeamService {
             if (optRealTeam.isEmpty()) {
                 RealTeam newRealTeam = new RealTeam();
                 newRealTeam.setTeamName(realTeam.getTeamName());
+                newRealTeam.setImageUrl(realTeam.getImageUrl());
                 this.realTeamRepository.save(newRealTeam);
             }
         }

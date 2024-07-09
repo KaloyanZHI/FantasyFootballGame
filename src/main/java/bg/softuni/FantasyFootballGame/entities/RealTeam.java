@@ -15,6 +15,16 @@ public class RealTeam {
     @OneToMany(targetEntity = Player.class, mappedBy = "realTeam")
     private Set<Player> players;
 
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public RealTeam(){}
 
     public Long getId() {
