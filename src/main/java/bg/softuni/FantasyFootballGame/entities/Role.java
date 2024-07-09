@@ -1,6 +1,7 @@
 package bg.softuni.FantasyFootballGame.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "roles")
@@ -9,6 +10,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
+    @NotNull
     private UserRoles name;
 
     public Role(){

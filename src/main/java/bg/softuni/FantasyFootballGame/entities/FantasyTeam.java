@@ -11,7 +11,7 @@ public class FantasyTeam {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "team_name")
+    @Column(name = "team_name", unique = true)
     private String teamName;
 
     @ManyToMany
