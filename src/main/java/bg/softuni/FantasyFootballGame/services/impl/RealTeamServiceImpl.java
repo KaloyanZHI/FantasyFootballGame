@@ -1,6 +1,8 @@
 package bg.softuni.FantasyFootballGame.services.impl;
 
+import bg.softuni.FantasyFootballGame.entities.Player;
 import bg.softuni.FantasyFootballGame.entities.RealTeam;
+import bg.softuni.FantasyFootballGame.repositories.PlayerRepository;
 import bg.softuni.FantasyFootballGame.repositories.RealTeamRepository;
 import bg.softuni.FantasyFootballGame.services.RealTeamService;
 import com.google.gson.Gson;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,9 +21,12 @@ public class RealTeamServiceImpl implements RealTeamService {
     private final RealTeamRepository realTeamRepository;
     private final Gson gson;
 
-    public RealTeamServiceImpl(RealTeamRepository realTeamRepository, Gson gson) {
+    private final PlayerRepository playerRepository;
+
+    public RealTeamServiceImpl(RealTeamRepository realTeamRepository, Gson gson, PlayerRepository playerRepository) {
         this.realTeamRepository = realTeamRepository;
         this.gson = gson;
+        this.playerRepository = playerRepository;
     }
 
     @Override
@@ -28,6 +35,9 @@ public class RealTeamServiceImpl implements RealTeamService {
 
 
     }
+
+
+
 
     @Override
     public void seedRealTeams() throws IOException {

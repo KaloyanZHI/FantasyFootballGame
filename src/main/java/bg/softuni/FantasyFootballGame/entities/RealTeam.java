@@ -2,6 +2,7 @@ package bg.softuni.FantasyFootballGame.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,7 +14,7 @@ public class RealTeam {
     @Column(name = "team_name")
     private String teamName;
     @OneToMany(targetEntity = Player.class, mappedBy = "realTeam")
-    private Set<Player> players;
+    private List<Player> players;
 
     private String imageUrl;
 
@@ -43,11 +44,11 @@ public class RealTeam {
         this.teamName = teamName;
     }
 
-    public Set<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(Set<Player> players) {
+    public void setPlayers(List<Player> players) {
         this.players = players;
     }
 

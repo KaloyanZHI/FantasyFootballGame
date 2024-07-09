@@ -26,7 +26,12 @@
                        th:text="${team.getTeamName()}"
                         class="card-title">Card title</h5>
                 <p class="card-text"
-                th:text="@{${team.getImageUrl()}}"></p>
+
+                th:each="player : ${team.getPlayers()}"
+                th:object="${player}"
+                th:text="${player.getFirstName()} + ' ' + ${player.getLastName()} + ' Position: ' + ${player.getPlayerPosition()} + ' Price: ' + ${player.getPrice()} ">
+
+                </p>
 
             </div>
         </div>
