@@ -15,7 +15,7 @@ public class RealTeam {
     private String teamName;
     @OneToMany(targetEntity = Player.class, mappedBy = "realTeam")
     private List<Player> players;
-
+@Column(name = "image_url")
     private String imageUrl;
 
     public String getImageUrl() {

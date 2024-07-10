@@ -26,6 +26,8 @@ public class User {
     @Column(unique = true)
 
     private String email;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<News> news;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -40,6 +42,7 @@ public class User {
     public User() {
         this.roles = new ArrayList<>();
         this.budget = 100;
+        this.news = new ArrayList<>();
 
     }
 
@@ -109,5 +112,19 @@ public class User {
 
     public void setFantasyTeam(FantasyTeam fantasyTeam) {
         this.fantasyTeam = fantasyTeam;
+    }
+
+    public List<News> getNews() {
+        return news;
+    }
+
+    public void setNews(List<News> news) {
+        this.news = news;
+    }
+
+    public void addNews(User user, News news) {
+        List<News> userNews = user.getNews();
+        userNews.add(news);
+        user.setNews(userNews);
     }
 }

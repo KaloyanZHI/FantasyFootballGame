@@ -2,6 +2,7 @@ package bg.softuni.FantasyFootballGame.services.impl;
 
 import bg.softuni.FantasyFootballGame.dto.UserRegisterDTO;
 import bg.softuni.FantasyFootballGame.entities.FantasyTeam;
+import bg.softuni.FantasyFootballGame.entities.News;
 import bg.softuni.FantasyFootballGame.entities.User;
 import bg.softuni.FantasyFootballGame.entities.UserRolesEnum;
 import bg.softuni.FantasyFootballGame.repositories.FantasyTeamRepository;
@@ -90,6 +91,9 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(admin);
 
     }
+
+
+
 
 
 }
