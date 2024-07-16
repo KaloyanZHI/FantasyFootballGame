@@ -2,6 +2,9 @@ package bg.softuni.FantasyFootballGame.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Entity
 @Table(name = "news")
 public class News {
@@ -17,6 +20,19 @@ public class News {
 
     @ManyToOne
     private User author;
+
+    @Column(name = "date_and_time")
+    private LocalDateTime publishingTime;
+
+    public LocalDateTime getPublishingTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return publishingTime.withNano(0);
+    }
+
+    public void setPublishingTime(LocalDateTime publishingTime) {
+        this.publishingTime = publishingTime;
+    }
+
     @Column(name = "image_url")
     private String imageURL;
 

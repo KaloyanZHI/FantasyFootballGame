@@ -36,7 +36,11 @@ public class RealTeamServiceImpl implements RealTeamService {
 
     }
 
+    @Override
+    public List<RealTeam> findAllRealTeams() {
+        return this.realTeamRepository.findAll();
 
+    }
 
 
     @Override
@@ -54,5 +58,6 @@ public class RealTeamServiceImpl implements RealTeamService {
 
 
     }
+
 
 }

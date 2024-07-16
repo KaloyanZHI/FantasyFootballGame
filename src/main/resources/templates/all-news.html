@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>.right-bck {
+        background-color: #231833
+    }
+
+    .registration-right {
+        width: 80%;
+        padding-top: 50px;
+        padding-bottom: 50px
+    }
+
+    .registration-right h2 {
+        color: #ffffff;
+        font-weight: 700;
+        padding-bottom: 20px
+    }
+
+    .registration .btn {
+        width: 100%
+    }
+
+    .fa, .fas, .fab {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900
+    }
+
+    .far {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 400
+    }
+
+    .event-list .card {
+        background-color: #30263f;
+        padding: 18px;
+        margin-bottom: 3px
+    }
+
+    .event-list img {
+        width: 77px;
+        height: 77px
+    }
+
+    .event-list h4 {
+        color: #c0bfc9;
+        font-size: 16px
+    }
+
+    .event-list .card-title span {
+        padding-left: 5px;
+        padding-right: 20px;
+        font-size: 12px;
+        font-weight: 700
+    }
+
+    .event-list .card-text {
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 16px
+    }
+
+    .event-list .card-body {
+        padding: 0 20px;
+        margin: 0 0 10px 0
+    }
+
+    .event-list .card-title svg {
+        color: #ffffff
+    }</style>
+
+</head>
+
+<body>
+
+<nav th:replace="fragments/commons">
+</nav>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center right-bck"
+        >
+            <div class="registration-right"
+            >
+                <h2
+                >Our Latest News</h2>
+                <div class="event-list"
+                    >
+                    <div class="card flex-row"
+                         th:each="news : ${allNews}"
+                         th:object="${news}"><img class="card-img-left img-fluid" th:src="${news.getImageURL()}"
+                                                    />
+                        <div class="card-body">
+                            <h4 class="card-title h5 h4-sm"><i class="fas fa-caret-right" aria-hidden="true"></i><span th:text="${news.getPublishingTime().toLocalDate()}"></span><i
+                                    class="fas fa-caret-right" aria-hidden="true"></i><span th:text="${news.getPublishingTime().toLocalTime()}"></span>
+                            </h4>
+                             <a href="#" class="card-text" style="text-decoration: none" th:text="${news.getNewsHeader()}"></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

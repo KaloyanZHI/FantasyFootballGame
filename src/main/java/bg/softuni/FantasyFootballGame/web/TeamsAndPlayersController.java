@@ -4,6 +4,7 @@ import bg.softuni.FantasyFootballGame.entities.Player;
 import bg.softuni.FantasyFootballGame.entities.RealTeam;
 import bg.softuni.FantasyFootballGame.repositories.PlayerRepository;
 import bg.softuni.FantasyFootballGame.repositories.RealTeamRepository;
+import bg.softuni.FantasyFootballGame.services.PlayerService;
 import bg.softuni.FantasyFootballGame.services.RealTeamService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -18,22 +19,24 @@ import java.util.List;
 
 @Controller
 public class TeamsAndPlayersController {
-    private final RealTeamRepository realTeamRepository;
 
-    private final PlayerRepository playerRepository;
+
+
 
     private final RealTeamService realTeamService;
 
-    public TeamsAndPlayersController(RealTeamRepository realTeamRepository, PlayerRepository playerRepository, RealTeamService realTeamService) {
-        this.realTeamRepository = realTeamRepository;
-        this.playerRepository = playerRepository;
+    private final PlayerService playerService;
+
+    public TeamsAndPlayersController(RealTeamRepository realTeamRepository, PlayerRepository playerRepository, RealTeamService realTeamService, PlayerService playerService) {
+
         this.realTeamService = realTeamService;
+        this.playerService = playerService;
     }
 
     @GetMapping("/teams-and-players")
     public ModelAndView getTeamAndPlayers() throws IOException {
-        List<RealTeam> realTeams = new ArrayList<>(this.realTeamRepository.findAll());
-        List<Player> players = new ArrayList<>(this.playerRepository.findAll());
+        List<RealTeam> realTeams = this.realTeamService.findAllRealTeams();
+        List<Player> players = this.playerService.findAllPlayers();
        ModelAndView modelAndView = new ModelAndView("teams-and-players");
        modelAndView.addObject("teams", realTeams);
        modelAndView.addObject("players", players);

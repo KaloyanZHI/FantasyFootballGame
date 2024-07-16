@@ -123,8 +123,6 @@ public class User {
     }
 
     public void addNews(User user, News news) {
-        List<News> userNews = user.getNews();
-        userNews.add(news);
-        user.setNews(userNews);
+        user.getNews().add(news);
     }
 }

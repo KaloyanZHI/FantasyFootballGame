@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,6 +38,12 @@ public class PlayerServiceImpl implements PlayerService {
     public String readPlayersFromFile() throws IOException {
         return Files.readString(Path.of(PLAYER_FILE_PATH));
     }
+
+    @Override
+    public List<Player> findAllPlayers() {
+        return this.playerRepository.findAll();
+    }
+
     @Override
     public void seedPlayers() throws IOException {
         PlayerSeedDTO[] players = gson.fromJson(readPlayersFromFile(), PlayerSeedDTO[].class);

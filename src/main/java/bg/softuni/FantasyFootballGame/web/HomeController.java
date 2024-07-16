@@ -29,11 +29,7 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/news")
-    public String getNews() throws IOException {
 
-        return "news";
-    }
     @GetMapping("/about")
     public String getAbout() throws IOException {
 
