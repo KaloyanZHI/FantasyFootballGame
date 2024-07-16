@@ -100,7 +100,7 @@
                             <h4 class="card-title h5 h4-sm"><i class="fas fa-caret-right" aria-hidden="true"></i><span th:text="${news.getPublishingTime().toLocalDate()}"></span><i
                                     class="fas fa-caret-right" aria-hidden="true"></i><span th:text="${news.getPublishingTime().toLocalTime()}"></span>
                             </h4>
-                             <a href="#" class="card-text" style="text-decoration: none" th:text="${news.getNewsHeader()}"></a>
+                             <a th:href="@{/news/{id}(id=*{id})}" class="card-text" style="text-decoration: none" th:text="${news.getNewsHeader()}"></a>
                         </div>
                     </div>
 

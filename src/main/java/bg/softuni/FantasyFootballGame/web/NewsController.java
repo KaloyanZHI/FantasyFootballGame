@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
+@RequestMapping("/news")
 public class NewsController {
 
     private final NewsService newsService;
@@ -24,7 +25,7 @@ public class NewsController {
         this.newsService = newsService;
     }
 
-    @GetMapping("/news")
+    @GetMapping("/all")
     public ModelAndView getNews() throws IOException {
         List<News> newsList = this.newsService.findAllNews();
         ModelAndView modelAndView = new ModelAndView("all-news");
@@ -32,15 +33,15 @@ public class NewsController {
 
         return modelAndView;
     }
-//    @GetMapping("/news/{id}")
-//    public ModelAndView consoleDetails(@PathVariable("id") Long id) {
-//
-//
-//        News news = newsService.findNewsById(id);
-//
-//        ModelAndView modelAndView = new ModelAndView("sole-news");
-//        modelAndView.addObject("soleNews", news);
-//
-//        return modelAndView;
-//    }
+    @GetMapping("/{id}")
+    public ModelAndView consoleDetails(@PathVariable("id") Long id) {
+
+
+        News news = newsService.findNewsById(id);
+
+        ModelAndView modelAndView = new ModelAndView("sole-news");
+        modelAndView.addObject("soleNews", news);
+
+        return modelAndView;
+    }
 }
