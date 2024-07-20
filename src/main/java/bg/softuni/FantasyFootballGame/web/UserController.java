@@ -5,6 +5,7 @@ import bg.softuni.FantasyFootballGame.dto.UserRegisterDTO;
 import bg.softuni.FantasyFootballGame.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -41,8 +42,11 @@ public class UserController {
     public String doRegister(
             @Valid UserRegisterDTO data,
             BindingResult bindingResult,
-            RedirectAttributes redirectAttributes
+            RedirectAttributes redirectAttributes,
+            Model model
     ){
+
+
 
         if (bindingResult.hasErrors() || !data.getPassword().equals(data.getConfirmPassword())){
             redirectAttributes.addFlashAttribute("registerData", data);
@@ -51,6 +55,17 @@ public class UserController {
             return "redirect:/register";
 
         }
+
+        if (!userService.passwordMatches(data)){
+
+
+            model.addAttribute("passwordMatch", false);
+            redirectAttributes.addFlashAttribute("registerData", data);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.registerData", bindingResult);
+            return "redirect:/register";
+        }
+
         boolean successfulRegistration = userService.register(data);
 
         if (!successfulRegistration){

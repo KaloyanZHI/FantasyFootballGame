@@ -10,7 +10,7 @@ public interface UserService {
 
      void seedUsers();
 
-
+    boolean passwordMatches(UserRegisterDTO user);
 }
 
 

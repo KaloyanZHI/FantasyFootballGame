@@ -92,8 +92,10 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
-
+    @Override
+    public boolean passwordMatches(UserRegisterDTO user) {
+        return user.getPassword().equals(user.getConfirmPassword());
+    }
 
 
 }
