@@ -41,11 +41,7 @@ public class HomeController {
         return "rules";
     }
 
-    @GetMapping("/my-team")
-    public String goMyTeam() {
 
-        return "my-team";
-    }
     @GetMapping("/admin-tools")
     public String goAdminTools() {
 

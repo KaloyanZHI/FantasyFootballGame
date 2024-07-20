@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -71,6 +72,14 @@ public class UserController {
     public String goSuccessfulRegister() {
 
         return "successful-register";
+    }
+    @PostMapping("/login-error")
+    public ModelAndView onFailure() {
+
+        ModelAndView modelAndView = new ModelAndView("login");
+        modelAndView.addObject("bad_credentials", true);
+
+        return modelAndView;
     }
 
 }

@@ -16,7 +16,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/", "/about", "/news/all", "/rules", "/teams-and-players", "successful-register", "news/**").permitAll()
+                                .requestMatchers("/", "/about",
+                                        "/news/all",
+                                        "/rules",
+                                        "/teams-and-players",
+                                        "successful-register",
+                                        "news/**",
+                                        "/login-error")
+                                .permitAll()
                                 .requestMatchers("/login", "/register").anonymous()
                                 .anyRequest().authenticated()
                 )
@@ -26,7 +33,7 @@ public class SecurityConfig {
                                 .usernameParameter("username")
                                 .passwordParameter("password")
                                 .defaultSuccessUrl("/", true)
-                                .failureForwardUrl("/login")
+                                .failureForwardUrl("/login-error")
                 )
                 .logout(logout ->
                         logout
