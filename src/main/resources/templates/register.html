@@ -59,8 +59,7 @@
                             <div data-mdb-input-init class="form-outline mb-4">
                                 <input type="password" id="form3Example4cdg" class="form-control form-control-lg"
                                        name="confirmPassword"
-                                       th:field="*{confirmPassword}"
-                                      th:errorclass="is-invalid alert-danger">
+                                       th:field="*{confirmPassword}">
                                 <p style="color: red"
                                        th:if="${registerData.getPassword()} != ${registerData.getConfirmPassword()}"
                                 >Passwords must match!</p>
