@@ -1,7 +1,8 @@
 package bg.softuni.FantasyFootballGame.dto;
 
-import bg.softuni.FantasyFootballGame.entities.FantasyTeam;
+
 import jakarta.validation.constraints.*;
+
 
 public class UserRegisterDTO {
     @NotNull
@@ -23,12 +24,17 @@ public class UserRegisterDTO {
 
 
 
+
+
     public UserRegisterDTO() {
+
     }
+
 
     public String getUsername() {
         return username;
     }
+
 
     public void setUsername(String username) {
         this.username = username;

@@ -97,5 +97,22 @@ public class UserServiceImpl implements UserService {
         return user.getPassword().equals(user.getConfirmPassword());
     }
 
+    @Override
+    public boolean checkIfUserWithSameUsernameExists(UserRegisterDTO userRegisterDTO) {
+        return this.userRepository.findByUsername(userRegisterDTO.getUsername()).isPresent();
+    }
+
+    @Override
+    public boolean checkIfUserWithSameEmailExists(UserRegisterDTO userRegisterDTO) {
+        return this.userRepository.findByEmail(userRegisterDTO.getEmail()).isPresent();
+    }
+
+    @Override
+    public boolean checkIfUserWithSameTeamNameExists(UserRegisterDTO userRegisterDTO) {
+        System.out.println(this.fantasyTeamRepository.findByTeamName(userRegisterDTO.getFantasyTeam()).isPresent());
+        return this.fantasyTeamRepository.findByTeamName(userRegisterDTO.getFantasyTeam()).isPresent();
+
+    }
+
 
 }

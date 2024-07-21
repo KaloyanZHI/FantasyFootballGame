@@ -11,6 +11,14 @@ public interface UserService {
      void seedUsers();
 
     boolean passwordMatches(UserRegisterDTO user);
+
+    boolean checkIfUserWithSameUsernameExists(UserRegisterDTO userRegisterDTO);
+
+    boolean checkIfUserWithSameEmailExists(UserRegisterDTO userRegisterDTO);
+
+    boolean checkIfUserWithSameTeamNameExists(UserRegisterDTO userRegisterDTO);
+
+
 }
 
 

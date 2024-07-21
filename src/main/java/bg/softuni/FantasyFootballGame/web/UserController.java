@@ -42,8 +42,7 @@ public class UserController {
     public String doRegister(
             @Valid UserRegisterDTO data,
             BindingResult bindingResult,
-            RedirectAttributes redirectAttributes,
-            Model model
+            RedirectAttributes redirectAttributes
     ){
 
 
@@ -59,11 +58,35 @@ public class UserController {
         if (!userService.passwordMatches(data)){
 
 
-            model.addAttribute("passwordMatch", false);
             redirectAttributes.addFlashAttribute("registerData", data);
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.registerData", bindingResult);
             return "redirect:/register";
+        }
+
+        if (userService.checkIfUserWithSameUsernameExists(data)){
+            redirectAttributes.addFlashAttribute("registerData", data);
+            redirectAttributes.addFlashAttribute("userWithSameUsernameExists", true);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.registerData", bindingResult);
+            return "redirect:/register";
+
+        }
+        if (userService.checkIfUserWithSameEmailExists(data)){
+            redirectAttributes.addFlashAttribute("registerData", data);
+            redirectAttributes.addFlashAttribute("userWithSameEmailExists", true);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.registerData", bindingResult);
+            return "redirect:/register";
+
+        }
+        if (userService.checkIfUserWithSameTeamNameExists(data)){
+            redirectAttributes.addFlashAttribute("registerData", data);
+            redirectAttributes.addFlashAttribute("userWithSameTeamNameExists", true);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.registerData", bindingResult);
+            return "redirect:/register";
+
         }
 
         boolean successfulRegistration = userService.register(data);
