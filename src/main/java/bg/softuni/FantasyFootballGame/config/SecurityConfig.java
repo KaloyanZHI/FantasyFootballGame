@@ -22,7 +22,8 @@ public class SecurityConfig {
                                         "/teams-and-players",
                                         "successful-register",
                                         "news/**",
-                                        "/login-error")
+                                        "/login-error",
+                                        "/error")
                                 .permitAll()
                                 .requestMatchers("/login", "/register").anonymous()
                                 .anyRequest().authenticated()
