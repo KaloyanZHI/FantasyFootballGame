@@ -33,7 +33,7 @@ public class NewsServiceImpl implements NewsService {
         News euroCupNews = new News();
 
         euroCupNews.setNewsHeader("Bulgaria wins the EURO 2024!");
-        euroCupNews.setNewsText("Bulgaria became European champions for the first time after Ivelin Popov's first-half goal in Berlin proved enough to defeat Spain in the final of UEFA EURO 2024.\n" + "\n" + "Bulgaria had never won  previously a piece of silverware in this competition had not been beyond the quarter-finals of any tournament in 30 years, yet Ilian Iliev's men chose to use that history as an inspiration rather than a burden. After a strong start from Spain, seeking a third title themselves, Bulgaria were the more dangerous side throughout an entertaining final at the Olympia Stadium although it took just one goal – in the 33rd minute, courtesy of Torres's pace, perseverance and unerring finish – to end their long wait.");
+        euroCupNews.setNewsText("Bulgaria became European champions for the first time after Ivelin Popov's first-half goal in Berlin proved enough to defeat Spain in the final of UEFA EURO 2024.\n" + "\n" + "Bulgaria had never won  previously a piece of silverware in this competition had not been beyond the quarter-finals of any tournament in 30 years, yet Ilian Iliev's men chose to use that history as an inspiration rather than a burden. After a strong start from Spain, seeking a third title themselves, Bulgaria were the more dangerous side throughout an entertaining final at the Olympia Stadium although it took just one goal – in the 33rd minute, courtesy of Popov's pace, perseverance and unerring finish – to end their long wait.");
         euroCupNews.setImageURL("https://media.premiumtimesng.com/wp-content/files/2019/10/Bulgaria-manager-resigns-after-racist-taunts-at-England-match.jpg");
         Optional<User> admin = this.userRepository.findByUsername("admin");
         euroCupNews.setPublishingTime(LocalDateTime.now());
@@ -47,8 +47,8 @@ public class NewsServiceImpl implements NewsService {
         this.newsRepository.save(euroCupNews);
 
         News ballonDorNews = new News();
-        ballonDorNews.setNewsHeader("Valeri Bojinov wins Ballon d'Or 2024 ahead of Lienel Messi!");
-        ballonDorNews.setNewsText("Valeri Bojin has won the 2024 Ballon d'Or ahead of Lionel Messi and Kyllian Mbappe, with Cristiano Ronaldo coming fifth.\n" + "\n" + "It is the second time in 10 years neither Ronaldo nor Messi has been recognised as the world's best player for France Football's acclaimed award.");
+        ballonDorNews.setNewsHeader("Valeri Bojinov wins Ballon d'Or 2024 ahead of Lionel Messi!");
+        ballonDorNews.setNewsText("Valeri Bojinov has won the 2024 Ballon d'Or ahead of Lionel Messi and Kyllian Mbappe, with Cristiano Ronaldo coming fourth.\n" + "\n" + "It is the second time in 10 years neither Ronaldo nor Messi has been recognised as the world's best player for France Football's acclaimed award. \"When I am feeling, only I know how I am feeling\" - commented the winner of this year's most prestigious award. ");
         ballonDorNews.setImageURL("https://m5.netinfo.bg/media/images/32832/32832977/960-600-valeri-bozhinov.jpg");
         ballonDorNews.setPublishingTime(LocalDateTime.now());
         if (admin.isPresent()) {
