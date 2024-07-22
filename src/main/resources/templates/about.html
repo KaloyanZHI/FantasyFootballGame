@@ -15,19 +15,35 @@
 <nav th:replace="fragments/commons">
 </nav>
 <div class="container">
+    <div class="nav-item">
+        <form th:method="GET">
+            <label class="text-white" for="lang">Language</label>
+            <select
+                    id="lang"
+                    name="lang"
+            onchange="this.form.submit()">
+                <option value="en-US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                <option value="bg-BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+            </select>
+
+
+        </form>
+
+    </div>
+
 <img class="card-img" src="/images/full-logo-no-background.png" alt="Card image">
 
 
 <div class="card bg-dark text-white">
 
     <div class="card-img-overlay" >
-        <h5 class="card-title">About us:</h5>
-        <p class="card-text">Welcome to Fantasy Football Game!. This is a place made by a football enthusiast for other enthusiasts who love the sport and want to not only watch it but also participate in it.</p>
-        <h5 class="card-title">My goal:</h5>
-        <p class="card-text" >My goal is to present a site which combines both the latest and trustworthy news and a game which will make you watch the football games with a little bit more passion because
+        <h5 class="card-title" th:text="#{about_us_header}">About us:</h5>
+        <p class="card-text" th:text="#{about_us_paragraph}">Welcome to Fantasy Football Game!. This is a place made by a football enthusiast for other enthusiasts who love the sport and want to not only watch it but also participate in it.</p>
+        <h5 class="card-title" th:text="#{my_goal_header}">My goal:</h5>
+        <p class="card-text" th:text="#{my_goal_paragraph}">My goal is to present a site which combines both the latest and trustworthy news and a game which will make you watch the football games with a little bit more passion because
         the real results will affect how your team performs.</p>
-        <h5 class="card-title">Contacts:</h5>
-        <p class="card-text" >If you want to leave a feedback, a suggestion or just chat about football, feel free to contact me on the following social medias:</p>
+        <h5 class="card-title" th:text="#{contacts_header}">Contacts:</h5>
+        <p class="card-text" th:text="#{contacts_paragraph}">If you want to leave a feedback, a suggestion or just chat about football, feel free to contact me on the following social medias:</p>
         <div class="text-center text-white mb-2">
             <div class="container p-4 pb-0">
                 <section>
