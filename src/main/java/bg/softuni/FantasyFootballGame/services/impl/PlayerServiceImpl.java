@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -42,6 +43,15 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public List<Player> findAllPlayers() {
         return this.playerRepository.findAll();
+    }
+
+    @Override
+    public Player findPlayerById(Long id) {
+        Optional<Player> optPlayer = this.playerRepository.findById(id);
+        if(optPlayer.isEmpty()){
+            throw new NoSuchElementException("Player not found!");
+        }
+        return modelMapper.map(optPlayer, Player.class);
     }
 
     @Override

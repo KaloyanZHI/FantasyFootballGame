@@ -11,9 +11,11 @@ import bg.softuni.FantasyFootballGame.repositories.UserRepository;
 import bg.softuni.FantasyFootballGame.services.FantasyTeamService;
 import bg.softuni.FantasyFootballGame.services.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -112,6 +114,23 @@ public class UserServiceImpl implements UserService {
         System.out.println(this.fantasyTeamRepository.findByTeamName(userRegisterDTO.getFantasyTeam()).isPresent());
         return this.fantasyTeamRepository.findByTeamName(userRegisterDTO.getFantasyTeam()).isPresent();
 
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return this.userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User doesn't exist! Username: " + username));
+    }
+    @Override
+    public FantasyTeam findUserFantasyTeam(Principal principal) {
+        User user = findByUsername(principal.getName());
+        return user.getFantasyTeam();
+    }
+
+    @Override
+    public Double findUserBudget(Principal principal) {
+        User user = findByUsername(principal.getName());
+        return user.getBudget();
     }
 
 

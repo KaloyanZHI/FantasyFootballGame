@@ -2,7 +2,9 @@ package bg.softuni.FantasyFootballGame.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,10 +17,10 @@ public class FantasyTeam {
     private String teamName;
 
     @ManyToMany
-    private Set<Player> players;
+    private List<Player> players;
 
     public FantasyTeam(){
-        this.players = new HashSet<>();
+        this.players=new ArrayList<>();
     }
 
     public Long getId() {
@@ -37,11 +39,11 @@ public class FantasyTeam {
         this.teamName = teamName;
     }
 
-    public Set<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(Set<Player> players) {
+    public void setPlayers(List<Player> players) {
         this.players = players;
     }
 

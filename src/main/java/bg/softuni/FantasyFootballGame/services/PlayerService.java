@@ -11,4 +11,6 @@ public interface PlayerService {
     String readPlayersFromFile() throws IOException;
 
     List<Player> findAllPlayers();
+
+    Player findPlayerById(Long id);
 }

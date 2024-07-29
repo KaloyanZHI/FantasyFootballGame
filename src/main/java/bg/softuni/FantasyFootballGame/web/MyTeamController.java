@@ -1,34 +1,56 @@
 package bg.softuni.FantasyFootballGame.web;
 
-import bg.softuni.FantasyFootballGame.entities.Player;
-import bg.softuni.FantasyFootballGame.entities.RealTeam;
-import bg.softuni.FantasyFootballGame.services.PlayerService;
-import bg.softuni.FantasyFootballGame.services.RealTeamService;
+import bg.softuni.FantasyFootballGame.entities.FantasyTeam;
+import bg.softuni.FantasyFootballGame.entities.User;
+import bg.softuni.FantasyFootballGame.services.FantasyTeamService;
+import bg.softuni.FantasyFootballGame.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import java.security.Principal;
 
 @Controller
+@RequestMapping("/my-team")
 public class MyTeamController {
-    private final RealTeamService realTeamService;
-    private final PlayerService playerService;
+    private final FantasyTeamService fantasyTeamService;
 
-    public MyTeamController(RealTeamService realTeamService, PlayerService playerService) {
-        this.realTeamService = realTeamService;
-        this.playerService = playerService;
+    private final UserService userService;
+
+
+
+    public MyTeamController(FantasyTeamService fantasyTeamService, UserService userService) {
+        this.fantasyTeamService = fantasyTeamService;
+        this.userService = userService;
     }
 
-    @GetMapping("/my-team")
-    public ModelAndView pickATeam() {
+    @GetMapping
+    public ModelAndView myTeam(Principal principal) {
         ModelAndView modelAndView = new ModelAndView("my-team");
-        List<RealTeam> realTeams = this.realTeamService.findAllRealTeams();
-        List<Player> players = this.playerService.findAllPlayers();
-        modelAndView.addObject("realTeams", realTeams);
-        modelAndView.addObject("realPlayers", players);
+        FantasyTeam currentFantasyTeam = this.userService.findUserFantasyTeam(principal);
+        modelAndView.addObject("userFantasyTeam", currentFantasyTeam);
 
         return modelAndView;
     }
+
+    @RequestMapping("/add/{id}")
+    public ModelAndView addPlayer(@PathVariable("id") Long id,
+                                  Principal principal,
+                                  HttpServletRequest httpRequest) {
+        User currentUser = this.userService.findByUsername(principal.getName());
+        FantasyTeam currentFantasyTeam = currentUser.getFantasyTeam();
+        this.fantasyTeamService.addPlayer(id, principal);
+        String referer = httpRequest.getHeader("Referer");
+        ModelAndView modelAndView = new ModelAndView("redirect:" + referer);
+        modelAndView.addObject("fantasyTeam", currentFantasyTeam);
+        modelAndView.addObject("user", currentUser);
+        return modelAndView;
+
+    }
+
 
 }

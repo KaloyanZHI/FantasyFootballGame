@@ -37,22 +37,22 @@ public class User {
 
     private List<Role> roles;
 
-    private Integer budget;
+    private Double budget;
 
     public User() {
         this.roles = new ArrayList<>();
-        this.budget = 100;
+        this.budget = 100.00;
         this.news = new ArrayList<>();
 
     }
 
 
 
-    public Integer getBudget() {
+    public Double getBudget() {
         return budget;
     }
 
-    public void setBudget(Integer budget) {
+    public void setBudget(Double budget) {
         this.budget = budget;
     }
 
