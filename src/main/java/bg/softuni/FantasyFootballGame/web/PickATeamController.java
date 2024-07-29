@@ -35,9 +35,11 @@ public class PickATeamController {
         List<RealTeam> realTeams = this.realTeamService.findAllRealTeams();
         List<Player> players = this.playerService.findAllPlayers();
         double userBudget = this.userService.findUserBudget(principal);
+        int playersCount = this.userService.findByUsername(principal.getName()).getFantasyTeam().getPlayers().size();
 
         modelAndView.addObject("realTeams", realTeams);
         modelAndView.addObject("realPlayers", players);
+        modelAndView.addObject("playersCount", playersCount);
         modelAndView.addObject("budget", userBudget);
 
         return modelAndView;

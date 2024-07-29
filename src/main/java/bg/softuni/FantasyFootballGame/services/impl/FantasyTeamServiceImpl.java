@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class FantasyTeamServiceImpl implements FantasyTeamService {
@@ -65,6 +66,27 @@ public class FantasyTeamServiceImpl implements FantasyTeamService {
         else {
             throw new IllegalArgumentException("No player found!");
         }
+
+
+    }
+
+    @Override
+    public void removePlayer(Long playerId, Principal principal) {
+        User user = this.userService.findByUsername(principal.getName());
+        FantasyTeam fantasyTeam = user.getFantasyTeam();
+        List<Player> playersList = fantasyTeam.getPlayers();
+        Player playerById = new Player();
+        for (Player player : playersList) {
+            if (player.getId().equals(playerId)){
+                playerById = player;
+
+                break;
+            }
+        }
+
+            playersList.remove(playerById);
+            user.setBudget(user.getBudget() + playerById.getPrice());
+            fantasyTeamRepository.save(fantasyTeam);
 
 
     }

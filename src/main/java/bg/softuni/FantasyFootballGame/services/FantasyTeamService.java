@@ -17,5 +17,5 @@ public interface FantasyTeamService {
    void addPlayer(Long playerId, Principal principal);
 
 
-
+   void removePlayer(Long playerId, Principal principal);
 }

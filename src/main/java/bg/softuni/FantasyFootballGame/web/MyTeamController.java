@@ -1,6 +1,7 @@
 package bg.softuni.FantasyFootballGame.web;
 
 import bg.softuni.FantasyFootballGame.entities.FantasyTeam;
+import bg.softuni.FantasyFootballGame.entities.Player;
 import bg.softuni.FantasyFootballGame.entities.User;
 import bg.softuni.FantasyFootballGame.services.FantasyTeamService;
 import bg.softuni.FantasyFootballGame.services.UserService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/my-team")
@@ -20,7 +22,6 @@ public class MyTeamController {
     private final FantasyTeamService fantasyTeamService;
 
     private final UserService userService;
-
 
 
     public MyTeamController(FantasyTeamService fantasyTeamService, UserService userService) {
@@ -50,6 +51,18 @@ public class MyTeamController {
         modelAndView.addObject("user", currentUser);
         return modelAndView;
 
+    }
+
+    @RequestMapping("/remove/{id}")
+    public ModelAndView removePlayer(@PathVariable("id") Long playerId,
+                                     Principal principal) {
+        User user = this.userService.findByUsername(principal.getName());
+        FantasyTeam fantasyTeam = user.getFantasyTeam();
+        List<Player> playersList = fantasyTeam.getPlayers();
+        fantasyTeamService.removePlayer(playerId, principal);
+
+
+        return new ModelAndView("redirect:/my-team");
     }
 
 
