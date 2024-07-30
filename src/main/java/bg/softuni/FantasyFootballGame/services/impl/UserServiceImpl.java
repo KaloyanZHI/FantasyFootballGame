@@ -1,10 +1,7 @@
 package bg.softuni.FantasyFootballGame.services.impl;
 
 import bg.softuni.FantasyFootballGame.dto.UserRegisterDTO;
-import bg.softuni.FantasyFootballGame.entities.FantasyTeam;
-import bg.softuni.FantasyFootballGame.entities.News;
-import bg.softuni.FantasyFootballGame.entities.User;
-import bg.softuni.FantasyFootballGame.entities.UserRolesEnum;
+import bg.softuni.FantasyFootballGame.entities.*;
 import bg.softuni.FantasyFootballGame.repositories.FantasyTeamRepository;
 import bg.softuni.FantasyFootballGame.repositories.RoleRepository;
 import bg.softuni.FantasyFootballGame.repositories.UserRepository;
@@ -16,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +50,7 @@ public class UserServiceImpl implements UserService {
         User newUser = new User();
 
         newUser.setUsername(dto.getUsername());
+        newUser.setRoles(List.of(roleRepository.findByName(UserRolesEnum.USER)));
         newUser.setEmail(dto.getEmail());
         newUser.setPassword(this.passwordEncoder.encode(dto.getPassword()));
         newUser.setAge(dto.getAge());
@@ -88,8 +87,10 @@ public class UserServiceImpl implements UserService {
         admin.setAge(34);
         admin.setFantasyTeam(adminFantasyTeam);
         admin.setEmail("admin@user");
-        admin.setRoles(List.of(roleRepository.findByName(UserRolesEnum.USER)));
-        admin.setRoles(List.of(roleRepository.findByName(UserRolesEnum.ADMIN)));
+        List<Role> rolesList = new ArrayList<>();
+        rolesList.add(roleRepository.findByName(UserRolesEnum.ADMIN));
+        rolesList.add(roleRepository.findByName(UserRolesEnum.USER));
+        admin.setRoles(rolesList);
         this.userRepository.save(admin);
 
     }
@@ -131,6 +132,11 @@ public class UserServiceImpl implements UserService {
     public Double findUserBudget(Principal principal) {
         User user = findByUsername(principal.getName());
         return user.getBudget();
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return this.userRepository.findAll();
     }
 
 

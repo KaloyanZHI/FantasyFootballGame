@@ -42,11 +42,7 @@ public class HomeController {
     }
 
 
-    @GetMapping("/admin-tools")
-    public String goAdminTools() {
 
-        return "admin-tools";
-    }
     @GetMapping("/logout")
     public String goLogout() {
 

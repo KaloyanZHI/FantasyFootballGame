@@ -7,6 +7,7 @@ import bg.softuni.FantasyFootballGame.entities.News;
 import bg.softuni.FantasyFootballGame.entities.User;
 
 import java.security.Principal;
+import java.util.List;
 
 public interface UserService {
     public boolean register(UserRegisterDTO data);
@@ -25,6 +26,8 @@ public interface UserService {
     FantasyTeam findUserFantasyTeam(Principal principal);
 
     Double findUserBudget(Principal principal);
+
+    List<User> findAllUsers();
 
 
 
