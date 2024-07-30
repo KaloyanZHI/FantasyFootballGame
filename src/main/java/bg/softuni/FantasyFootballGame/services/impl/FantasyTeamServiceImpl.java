@@ -7,6 +7,10 @@ import bg.softuni.FantasyFootballGame.repositories.FantasyTeamRepository;
 import bg.softuni.FantasyFootballGame.services.FantasyTeamService;
 import bg.softuni.FantasyFootballGame.services.PlayerService;
 import bg.softuni.FantasyFootballGame.services.UserService;
+import bg.softuni.FantasyFootballGame.services.exceptions.BudgetExceededException;
+import bg.softuni.FantasyFootballGame.services.exceptions.MaximumPlayersExceededException;
+import bg.softuni.FantasyFootballGame.services.exceptions.PlayerAlreadyExistsException;
+import bg.softuni.FantasyFootballGame.services.exceptions.PlayerNotFoundException;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -52,19 +56,22 @@ public class FantasyTeamServiceImpl implements FantasyTeamService {
         User user = this.userService.findByUsername(principal.getName());
 
         FantasyTeam fantasyTeam = user.getFantasyTeam();
+        if (fantasyTeam.getPlayers().contains(player)){
+            throw new PlayerAlreadyExistsException("Player already exists!", player.getFirstName(), player.getLastName());
+        }
         if (player != null){
             if (fantasyTeam.getPlayers().size() == 11){
-                throw new ArithmeticException ("Maximum 11 players are allowed!");
+                throw new MaximumPlayersExceededException("Maximum 11 players are allowed!");
             }
             if (user.getBudget() < player.getPrice()){
-                throw new IllegalArgumentException("Not enough budget!");
+                throw new BudgetExceededException("Not enough budget!");
             }
             fantasyTeam.getPlayers().add(player);
             user.setBudget(user.getBudget() - player.getPrice());
             fantasyTeamRepository.save(fantasyTeam);
         }
         else {
-            throw new IllegalArgumentException("No player found!");
+            throw new PlayerNotFoundException("No player found!");
         }
 
 

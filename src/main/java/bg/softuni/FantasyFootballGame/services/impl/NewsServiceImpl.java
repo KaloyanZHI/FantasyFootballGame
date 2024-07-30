@@ -5,11 +5,11 @@ import bg.softuni.FantasyFootballGame.entities.User;
 import bg.softuni.FantasyFootballGame.repositories.NewsRepository;
 import bg.softuni.FantasyFootballGame.repositories.UserRepository;
 import bg.softuni.FantasyFootballGame.services.NewsService;
+import bg.softuni.FantasyFootballGame.services.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -87,10 +87,11 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public News findNewsById(Long id) {
         Optional<News> newsById = this.newsRepository.findById(id);
-        if (newsById.isPresent()) {
-            return modelMapper.map(newsById, News.class);
+        if (newsById.isEmpty()) {
+            throw new ObjectNotFoundException("News not found!", id);
+
         }
-        return null;
+        return modelMapper.map(newsById, News.class);
 
     }
 }
