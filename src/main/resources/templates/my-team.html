@@ -16,23 +16,22 @@
 </nav>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-lg-4 mb-4" th:object="${userFantasyTeam}">
+        <div class="col-md-8" th:object="${userFantasyTeam}">
             <p style="color: white; font-family: 'Arial Black'" th:text="${userFantasyTeam.getTeamName()}"></p>
             <table id="real-players" class="table table-dark">
                 <thead>
                 <tr>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Price</th>
-                    <th scope="col"></th>
+                    <th scope="col" class="col-md-2">Real Team</th>
+                    <th scope="col" class="col-md-3">Name</th>
+                    <th scope="col" class="col-md-1">Position</th>
+                    <th scope="col" class="col-md-2">Price</th>
+                    <th scope="col" class="col-md-2"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="player : ${userFantasyTeam.getPlayers()}" th:object="${player}">
-
-                    <td th:text="${player.getFirstName()}">Mark</td>
-                    <td th:text="${player.getLastName()}">Otto</td>
+                    <td th:text="${player.getRealTeam().getTeamName()}">Mark</td>
+                    <td th:text="${player.getFirstName()} + ' ' + ${player.getLastName()}">Mark</td>
                     <td th:text="${player.getPlayerPosition()}"></td>
                     <td th:text="${player.getPrice()}"></td>
                     <td>
