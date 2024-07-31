@@ -7,6 +7,7 @@ import bg.softuni.FantasyFootballGame.repositories.RoleRepository;
 import bg.softuni.FantasyFootballGame.repositories.UserRepository;
 import bg.softuni.FantasyFootballGame.services.FantasyTeamService;
 import bg.softuni.FantasyFootballGame.services.UserService;
+import bg.softuni.FantasyFootballGame.services.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -44,7 +46,7 @@ public class UserServiceImpl implements UserService {
     public boolean register(UserRegisterDTO dto) {
 
         Optional<User> optUser = userRepository.findByUsernameOrEmail(dto.getUsername(), dto.getEmail());
-        if (optUser.isPresent()){
+        if (optUser.isPresent()) {
             return false;
         }
         User newUser = new User();
@@ -122,6 +124,7 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User doesn't exist! Username: " + username));
     }
+
     @Override
     public FantasyTeam findUserFantasyTeam(Principal principal) {
         User user = findByUsername(principal.getName());
@@ -137,6 +140,50 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAllUsers() {
         return this.userRepository.findAll();
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        User user = this.userRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("User not found!", id));
+
+        this.userRepository.delete(user);
+    }
+
+    @Override
+    public void addRoles(Map<User, List<Role>> userRoleMap, Long id) {
+        Role adminRole = this.roleRepository.findByName(UserRolesEnum.ADMIN);
+        User user = this.userRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("User not found", id));
+        for (Map.Entry<User, List<Role>> entry : userRoleMap.entrySet()){
+            if (entry.getKey() == user){
+                if (entry.getValue().size() > 1){
+                    System.out.println("Already an admin!");
+                }
+                entry.getValue().add(adminRole);
+                this.userRepository.save(user);
+            }
+        }
+
+
+
+    }
+
+    @Override
+    public void removeRoles(Map<User, List<Role>> userRoleMap, Long userId) {
+        Role adminRole = this.roleRepository.findByName(UserRolesEnum.ADMIN);
+        User user = this.userRepository
+                .findById(userId)
+                .orElseThrow(() -> new ObjectNotFoundException("User not found", userId));
+        for (Map.Entry<User, List<Role>> entry : userRoleMap.entrySet()){
+            if (entry.getKey() == user){
+                entry.getValue().remove(adminRole);
+                this.userRepository.save(user);
+            }
+        }
+
+
+
     }
 
 

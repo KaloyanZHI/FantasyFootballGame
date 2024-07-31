@@ -38,12 +38,28 @@
                     <td th:text="${user.email}">Otto</td>
                     <td th:text="${user.getAge()}">@mdo</td>
                     <td th:text="${user.fantasyTeam.getTeamName()}">@mdo</td>
-                    <td th:if="${user.getRoles().size() < 2}"><a class="btn btn-outline-light"
-                                                               type="button">Make admin</a></td>
-                    <td th:if="${user.getRoles().size() == 2}"> <p>Already an admin</p> </td>
-                    <td><a class="btn btn-outline-light"
+                    <td th:if="${user.getRoles().size() < 2}">
+                        <a class="btn btn-outline-light"
                            type="button"
-                    >Delete</a></td>
+                           th:href="@{/admin-tools/add-role/{id}(id=*{id})}">Make admin</a>
+                    </td>
+                    <td th:if="${user.getRoles().size() == 2}">
+                        <a class="btn btn-light"
+                           type="button"
+                           th:href="@{/admin-tools/remove-role/{id}(id=*{id})}">Revoke rights</a>
+                    </td>
+                    <td>
+                        <form class="nav-item"
+                              th:method="POST"
+                              th:action="@{/admin-tools/delete/{id}(id=*{id})}">
+                            <input type="hidden" name="_method" value="DELETE"/>
+
+                            <button class="btn btn-outline-light"
+                                    type="submit"
+                            >Delete
+                            </button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>

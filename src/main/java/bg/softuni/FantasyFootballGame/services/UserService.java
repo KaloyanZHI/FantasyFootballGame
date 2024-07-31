@@ -4,10 +4,12 @@ import bg.softuni.FantasyFootballGame.dto.UserLoginDTO;
 import bg.softuni.FantasyFootballGame.dto.UserRegisterDTO;
 import bg.softuni.FantasyFootballGame.entities.FantasyTeam;
 import bg.softuni.FantasyFootballGame.entities.News;
+import bg.softuni.FantasyFootballGame.entities.Role;
 import bg.softuni.FantasyFootballGame.entities.User;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     public boolean register(UserRegisterDTO data);
@@ -30,7 +32,10 @@ public interface UserService {
     List<User> findAllUsers();
 
 
+    void deleteUser(Long id);
+    void addRoles(Map<User, List<Role>> userRoleMap, Long id);
 
+    void removeRoles(Map<User, List<Role>> userRoleMap, Long userId);
 }
 
 
