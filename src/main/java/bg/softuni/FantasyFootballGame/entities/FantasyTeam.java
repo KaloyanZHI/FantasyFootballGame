@@ -18,9 +18,21 @@ public class FantasyTeam {
 
     @ManyToMany
     private List<Player> players;
+    @Column(name = "total_team_points")
+    private Double totalTeamPoints;
 
-    public FantasyTeam(){
-        this.players=new ArrayList<>();
+    public Double getTotalTeamPoints() {
+        return totalTeamPoints;
+    }
+
+    public void setTotalTeamPoints(Double totalTeamPoints) {
+        this.totalTeamPoints = totalTeamPoints;
+
+    }
+
+    public FantasyTeam() {
+        this.players = new ArrayList<>();
+        this.totalTeamPoints = 0.0;
     }
 
     public Long getId() {
