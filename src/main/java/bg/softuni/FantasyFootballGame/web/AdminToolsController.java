@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,12 +25,13 @@ public class AdminToolsController {
     }
 
     @GetMapping
-    public ModelAndView goAdminTools() {
+    public ModelAndView goAdminTools(Principal principal) {
         ModelAndView modelAndView = new ModelAndView("admin-tools");
         List<User> userList = this.userService.findAllUsers();
-
+        String currentUserName = principal.getName();
 
         modelAndView.addObject("allUsers", userList);
+        modelAndView.addObject("currentUserName", currentUserName);
 
 
         return modelAndView;

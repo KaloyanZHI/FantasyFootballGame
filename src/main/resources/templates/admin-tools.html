@@ -38,7 +38,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user : ${allUsers}" th:object="${user}" style="text-align: center">
+                <tr th:each="user : ${allUsers}" th:object="${user}" style="text-align: center"
+                th:if="${!currentUserName.equals(user.getUsername())}">
                     <th scope="row" th:text="${user.getId()}">1</th>
                     <td th:text="${user.getUsername()}">Mark</td>
                     <td th:text="${user.email}">Otto</td>

@@ -17,8 +17,21 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-lg-4 mb-4">
+        <h4 style="color: white">At the end of the match week reset the players points, match rating and save all the team points! <a
+                class="btn btn-outline-light"
+                type="button"
+                th:href="@{/add-points/reset-ratings}"
 
+        >Do it!</a></h4>
+        <h4 style="color: white">At the end of the season reset everything! <a
+            class="btn btn-outline-light"
+            type="button"
+            th:href="@{/add-points/reset-everything}"
+
+    >Do it!</a></h4>
+
+
+        <div class="col-md-10">
             <table id="real-players" class="table table-dark">
                 <thead>
                 <tr>
@@ -27,6 +40,8 @@
                     <th scope="col"></th>
                     <th scope="col">Price</th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col">Total points</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,7 +52,25 @@
                     <td th:text="${player.getPrice()}">@mdo</td>
                     <td><a class="btn btn-outline-light"
                            type="button"
-                           th:href="@{/my-team/add/{id}(id=*{id})}">Goal!</a></td>
+                           th:href="@{/add-points/score-goal/{id}(id=*{id})}">Goal!</a></td>
+                    <td th:if="${player.matchRating != 0.0}">
+                        <p th:text="'Player rating is '+ ${player.getMatchRating() + ' for this match!'}"></p>
+                    </td>
+                    <td
+                            th:if="${player.matchRating == 0.0}">
+                        <form th:action="@{/add-points/match-rating/{id}(id=*{id})}" method="post">
+                            <div class="form-group mb-2">
+                                <label for="inputMatchRating" class="sr-only">Match rating</label>
+                                <input type="text"
+                                       class="form-control mx-2"
+                                       id="inputMatchRating" placeholder="Rating"
+                                       style="max-width: 70px; display: inline-block;"
+                                       th:field="*{matchRating}" name="matchRating">
+                                <button type="submit" class="btn btn-outline-light ml-2">Submit rating</button>
+                            </div>
+                        </form>
+                    </td>
+                    <td th:text="${player.getPoints()}"></td>
                 </tr>
                 </tbody>
             </table>

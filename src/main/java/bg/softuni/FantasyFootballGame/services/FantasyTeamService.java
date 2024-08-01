@@ -18,4 +18,10 @@ public interface FantasyTeamService {
 
 
    void removePlayer(Long playerId, Principal principal);
+
+   Double calculateThisMatchPoints(FantasyTeam fantasyTeam);
+
+   void resetEverything(List<FantasyTeam> fantasyTeams);
+
+   List<FantasyTeam> findAllFantasyTeams();
 }

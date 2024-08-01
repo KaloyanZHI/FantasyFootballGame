@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8" th:object="${userFantasyTeam}">
-            <p style="color: white; font-family: 'Arial Black'" th:text="${userFantasyTeam.getTeamName()}"></p>
+            <p style="color: white; font-family: 'Arial Black'" th:text="${userFantasyTeam.getTeamName()} + ' Points from this match: ' + ${#numbers.formatDecimal(thisMatchPoints, 1, 2)} + ' Total points before this weekend: ' + ${#numbers.formatDecimal(userFantasyTeam.getTotalTeamPoints(), 1, 2)}" ></p>
             <table id="real-players" class="table table-dark">
                 <thead>
                 <tr>
@@ -26,6 +26,7 @@
                     <th scope="col" class="col-md-1">Position</th>
                     <th scope="col" class="col-md-2">Price</th>
                     <th scope="col" class="col-md-2"></th>
+                    <th scope="col" class="col-md-2">Player points</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,6 +42,7 @@
                                type="submit"
                             >Remove</button></form>
                     </td>
+                    <td th:text="${player.getPoints()}"></td>
                 </tr>
                 </tbody>
             </table>

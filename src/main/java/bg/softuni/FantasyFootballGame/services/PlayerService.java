@@ -13,4 +13,10 @@ public interface PlayerService {
     List<Player> findAllPlayers();
 
     Player findPlayerById(Long id);
+
+    void scoreGoal(Player player);
+
+    void updatePlayerTotalPoints(Player player, Double matchRating);
+
+    void prepareForNextMatch();
 }

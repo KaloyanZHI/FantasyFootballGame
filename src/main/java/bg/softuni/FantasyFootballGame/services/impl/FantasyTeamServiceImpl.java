@@ -98,5 +98,29 @@ public class FantasyTeamServiceImpl implements FantasyTeamService {
 
     }
 
+    @Override
+    public Double calculateThisMatchPoints(FantasyTeam fantasyTeam) {
+        double totalTeamPoints = 0;
+        List<Player> players = fantasyTeam.getPlayers();
+        for (Player player : players) {
+            totalTeamPoints+=player.getPoints();
+        }
+
+        return totalTeamPoints;
+    }
+
+    @Override
+    public void resetEverything(List<FantasyTeam> fantasyTeams) {
+        for (FantasyTeam fantasyTeam : fantasyTeams) {
+            fantasyTeam.setTotalTeamPoints(0.0);
+            this.fantasyTeamRepository.save(fantasyTeam);
+        }
+    }
+
+    @Override
+    public List<FantasyTeam> findAllFantasyTeams() {
+        return this.fantasyTeamRepository.findAll();
+    }
+
 
 }

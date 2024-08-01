@@ -33,7 +33,9 @@ public class MyTeamController {
     public ModelAndView myTeam(Principal principal) {
         ModelAndView modelAndView = new ModelAndView("my-team");
         FantasyTeam currentFantasyTeam = this.userService.findUserFantasyTeam(principal);
+        Double thisMatchPoints = this.fantasyTeamService.calculateThisMatchPoints(currentFantasyTeam);
         modelAndView.addObject("userFantasyTeam", currentFantasyTeam);
+        modelAndView.addObject("thisMatchPoints",thisMatchPoints);
 
         return modelAndView;
     }
@@ -58,7 +60,8 @@ public class MyTeamController {
                                      Principal principal) {
         User user = this.userService.findByUsername(principal.getName());
         FantasyTeam fantasyTeam = user.getFantasyTeam();
-        List<Player> playersList = fantasyTeam.getPlayers();
+
+
         fantasyTeamService.removePlayer(playerId, principal);
 
 
