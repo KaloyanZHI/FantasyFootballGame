@@ -1,5 +1,6 @@
 package bg.softuni.FantasyFootballGame.config;
 
+import bg.softuni.FantasyFootballGame.entities.UserRolesEnum;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +17,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/", "/about",
+                                .requestMatchers("/",
+                                        "/about",
                                         "/news/all",
                                         "/rules",
                                         "/teams-and-players",
@@ -27,6 +29,15 @@ public class SecurityConfig {
                                         "/rankings")
                                 .permitAll()
                                 .requestMatchers("/login", "/register").anonymous()
+                                .requestMatchers("/admin-tools",
+                                        "/add-points",
+                                        "/news/delete/",
+                                        "news/write-news",
+                                        "add-points/reset-everything",
+                                        "add-points/reset-ratings",
+                                        "add-points/score-goal/",
+                                        "admin-tools/delete/",
+                                        "admin-tools/remove-role/").hasRole(UserRolesEnum.ADMIN.name())
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->

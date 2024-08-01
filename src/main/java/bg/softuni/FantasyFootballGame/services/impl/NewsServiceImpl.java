@@ -1,5 +1,6 @@
 package bg.softuni.FantasyFootballGame.services.impl;
 
+import bg.softuni.FantasyFootballGame.dto.WriteNewsDTO;
 import bg.softuni.FantasyFootballGame.entities.News;
 import bg.softuni.FantasyFootballGame.entities.User;
 import bg.softuni.FantasyFootballGame.repositories.NewsRepository;
@@ -8,7 +9,9 @@ import bg.softuni.FantasyFootballGame.services.NewsService;
 import bg.softuni.FantasyFootballGame.services.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -93,5 +96,30 @@ public class NewsServiceImpl implements NewsService {
         }
         return modelMapper.map(newsById, News.class);
 
+    }
+
+    @Override
+    public void deleteNews(Long id) {
+        News news = this.newsRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("News not found!", id));
+
+        this.newsRepository.delete(news);
+    }
+
+    @Override
+    public void createNews(WriteNewsDTO dto, Principal principal) {
+        Optional<News> optionalNews = this.newsRepository.findByNewsHeader(dto.getNewsHeader());
+        if (optionalNews.isEmpty()){
+            News news = new News();
+            news.setNewsHeader(dto.getNewsHeader());
+            news.setNewsText(dto.getNewsText());
+            news.setImageURL(dto.getNewsURL());
+            news.setPublishingTime(LocalDateTime.now());
+            User user = this.userRepository.findByUsername(principal.getName())
+                    .orElseThrow(() -> new ObjectNotFoundException("User not found", 1));
+            news.setAuthor(user);
+            this.newsRepository.save(news);
+
+        }
     }
 }

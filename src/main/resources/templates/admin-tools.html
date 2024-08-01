@@ -19,8 +19,11 @@
     <div class="row" style="padding-bottom: 2em">
         <div class="col-md-2" sec:authorize="hasRole('ADMIN')">
         <a th:href="@{/add-points}" class="btn btn-outline-light"> Add points </a>
-        </div>
 
+        </div>
+        <div class="col-md-2">
+        <a th:href="@{/news/all}" class="btn btn-outline-light"> Redact news </a>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-8">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,33 +81,59 @@
 <nav th:replace="fragments/commons">
 </nav>
 
+<div class="container"  sec:authorize="hasRole('ADMIN')">
+    <div class="row">
+
+<div class="col-md-2">
+    <a th:href="@{/news/write-news}" class="btn btn-outline-light"> Write news </a>
+</div>
+</div>
+</div>
+
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-center right-bck"
-        >
-            <div class="registration-right"
-            >
-                <h2
-                >Our Latest News</h2>
-                <div class="event-list"
-                    >
-                    <div class="card flex-row"
-                         th:each="news : ${allNews}"
-                         th:object="${news}"><img class="card-img-left img-fluid" th:src="${news.getImageURL()}"
-                                                    />
-                        <div class="card-body">
-                            <h4 class="card-title h5 h4-sm"><i class="fas fa-caret-right" aria-hidden="true"></i><span th:text="${news.getPublishingTime().toLocalDate()}"></span><i
-                                    class="fas fa-caret-right" aria-hidden="true"></i><span th:text="${news.getPublishingTime().toLocalTime()}"></span>
-                            </h4>
-                             <a th:href="@{/news/{id}(id=*{id})}" class="card-text" style="text-decoration: none" th:text="${news.getNewsHeader()}"></a>
-                        </div>
-                    </div>
 
+    </div>
+    <div class="col-md-12 d-flex justify-content-center right-bck"
+    >
+        <div class="registration-right"
+        >
+            <h2
+            >Our Latest News</h2>
+            <div class="event-list"
+            >
+                <div class="card flex-row"
+                     th:each="news : ${allNews}"
+                     th:object="${news}"><img class="card-img-left img-fluid" th:src="${news.getImageURL()}"
+                />
+                    <div class="card-body">
+                        <h4 class="card-title h5 h4-sm"><i class="fas fa-caret-right" aria-hidden="true"></i><span
+                                th:text="${news.getPublishingTime().toLocalDate()}"></span><i
+                                class="fas fa-caret-right" aria-hidden="true"></i><span
+                                th:text="${news.getPublishingTime().toLocalTime()}"></span>
+                        </h4>
+                        <a th:href="@{/news/{id}(id=*{id})}" class="card-text" style="text-decoration: none"
+                           th:text="${news.getNewsHeader()}"></a>
+                    </div>
+                    <form class="nav-item"
+
+                          th:method="DELETE"
+                          th:action="@{/news/delete/{id}(id=*{id})}">
+                        <input type="hidden" name="_method" value="DELETE"/>
+
+                        <button sec:authorize="hasRole('ADMIN')" class="btn btn-outline-light"
+                                type="submit"
+                        >Delete
+                        </button>
+                    </form>
                 </div>
+
+
             </div>
         </div>
     </div>
+</div>
 </div>
 
 

@@ -24,6 +24,7 @@ public class HomeController {
 
         return "index";
     }
+
     @GetMapping("/home")
     public String getHome() throws IOException {
 
@@ -36,6 +37,7 @@ public class HomeController {
 
         return "about";
     }
+
     @GetMapping("/rules")
     public String getRules() throws IOException {
 
@@ -43,16 +45,11 @@ public class HomeController {
     }
 
 
-
     @GetMapping("/logout")
     public String goLogout() {
 
         return "logout";
     }
-
-
-
-
 
 
 }
