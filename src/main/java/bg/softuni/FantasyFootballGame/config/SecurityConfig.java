@@ -23,7 +23,8 @@ public class SecurityConfig {
                                         "successful-register",
                                         "news/**",
                                         "/login-error",
-                                        "/error")
+                                        "/error",
+                                        "/rankings")
                                 .permitAll()
                                 .requestMatchers("/login", "/register").anonymous()
                                 .anyRequest().authenticated()

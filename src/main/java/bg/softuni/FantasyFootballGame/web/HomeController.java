@@ -5,6 +5,7 @@ import bg.softuni.FantasyFootballGame.services.PlayerService;
 import bg.softuni.FantasyFootballGame.services.RealTeamService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 
@@ -48,6 +49,7 @@ public class HomeController {
 
         return "logout";
     }
+
 
 
 
