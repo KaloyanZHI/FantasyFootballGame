@@ -3,6 +3,8 @@ package bg.softuni.FantasyFootballGame.services;
 import bg.softuni.FantasyFootballGame.dto.WriteNewsDTO;
 import bg.softuni.FantasyFootballGame.entities.News;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -16,4 +18,6 @@ public interface NewsService {
     void deleteNews(Long id);
 
     void createNews(WriteNewsDTO dto, Principal principal);
+
+    boolean checkForCurseWords() throws IOException;
 }

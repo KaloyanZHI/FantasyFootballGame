@@ -9,13 +9,15 @@ import bg.softuni.FantasyFootballGame.services.NewsService;
 import bg.softuni.FantasyFootballGame.services.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.ahocorasick.trie.Trie;
+import org.ahocorasick.trie.Emit;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class NewsServiceImpl implements NewsService {
@@ -109,7 +111,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public void createNews(WriteNewsDTO dto, Principal principal) {
         Optional<News> optionalNews = this.newsRepository.findByNewsHeader(dto.getNewsHeader());
-        if (optionalNews.isEmpty()){
+        if (optionalNews.isEmpty()) {
             News news = new News();
             news.setNewsHeader(dto.getNewsHeader());
             news.setNewsText(dto.getNewsText());
@@ -122,4 +124,55 @@ public class NewsServiceImpl implements NewsService {
 
         }
     }
+
+
+    @Override
+    public boolean checkForCurseWords() throws IOException {
+        Set<String> bannedWords = loadBannedWords();
+
+        Trie.TrieBuilder trieBuilder = Trie.builder().onlyWholeWords();
+        for (String word : bannedWords) {
+            trieBuilder.addKeyword(word.toLowerCase());
+        }
+        Trie trie = trieBuilder.build();
+
+        List<News> newsList = this.newsRepository.findAll();
+        List<News> toDelete = new ArrayList<>();
+        boolean curseWordsFound = false;
+
+        for (News news : newsList) {
+            String newsHeader = news.getNewsHeader().toLowerCase();
+            String newsText = news.getNewsText().toLowerCase();
+
+            boolean foundInHeader = trie.parseText(newsHeader).iterator().hasNext();
+            boolean foundInText = trie.parseText(newsText).iterator().hasNext();
+
+            if (foundInHeader || foundInText) {
+                toDelete.add(news);
+                curseWordsFound = true;
+            }
+        }
+
+        if (!toDelete.isEmpty()) {
+            this.newsRepository.deleteAll(toDelete);
+        }
+
+        return curseWordsFound;
+    }
+
+    private Set<String> loadBannedWords() throws IOException {
+        Set<String> bannedWords = new HashSet<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/static/list-banned-words.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] wordsArray = line.split(", ");
+                for (String word : wordsArray) {
+                    bannedWords.add(word.trim().toLowerCase());
+                }
+            }
+        }
+        return bannedWords;
+    }
+
 }
+

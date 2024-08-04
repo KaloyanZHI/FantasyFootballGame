@@ -1,14 +1,17 @@
 package bg.softuni.FantasyFootballGame.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class WriteNewsDTO {
-
+    @NotBlank(message = "Header cannot be empty!")
     private String newsHeader;
-
+    @NotBlank(message = "Text cannot be empty!")
     private String newsText;
-
+    @NotBlank(message = "URL cannot be empty!")
     private String newsURL;
 
-    public WriteNewsDTO(){
+    public WriteNewsDTO() {
 
     }
 

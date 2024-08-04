@@ -5,9 +5,12 @@ import bg.softuni.FantasyFootballGame.entities.News;
 import bg.softuni.FantasyFootballGame.entities.Player;
 import bg.softuni.FantasyFootballGame.services.NewsService;
 import bg.softuni.FantasyFootballGame.services.exceptions.ObjectNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -31,6 +34,7 @@ public class NewsController {
     public ModelAndView getNews() throws IOException {
         List<News> newsList = this.newsService.findAllNews();
         ModelAndView modelAndView = new ModelAndView("all-news");
+        modelAndView.addObject("writeNewsDTO", new WriteNewsDTO());
         modelAndView.addObject("allNews", newsList);
 
         return modelAndView;
@@ -70,13 +74,19 @@ public class NewsController {
 
 
 
-    @PostMapping(value = "/write-news")
-    public ModelAndView addNews(@ModelAttribute WriteNewsDTO writeNewsDTO,
-                                Principal principal) {
-        this.newsService.createNews(writeNewsDTO, principal);
+    @PostMapping("/write-news")
+    public String addNews(@ModelAttribute @Valid WriteNewsDTO data,
+                          BindingResult bindingResult,
+                          Principal principal,
+                          RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.writeNewsDTO", bindingResult);
+            redirectAttributes.addFlashAttribute("writeNewsDTO", data);
+            return "redirect:/news/write-news";
+        }
 
-        return new ModelAndView("redirect:/news/all");
-
+        this.newsService.createNews(data, principal);
+        return "redirect:/news/all";
     }
 
 

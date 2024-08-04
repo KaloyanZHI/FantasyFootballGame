@@ -17,24 +17,36 @@
         <form th:action="@{/news/write-news}" method="post"
               th:object="${writeNewsDTO}">
             <div class="form-group mb-2">
+
                 <label for="inputNewsHeader" style="color: white" class="sr-only">Header</label>
+                <div data-mdb-input-init class="form-outline mb-4">
                 <input
                         type="text"
                         class="form-control mx-2"
                         id="inputNewsHeader" placeholder="Header"
                         th:field="*{newsHeader}"
-                >
+                        th:errorclass="'is-invalid alert-danger'">
+                <small class="invalid-feedback text-danger" >Header cannot be empty!</small>
                 <label for="inputNewsText" style="color: white" class="sr-only">Text</label>
+                    </div>
+                <div data-mdb-input-init class="form-outline mb-4">
                 <textarea
                         class="form-control mx-2"
                         id="inputNewsText" placeholder="Text" rows="5"
-                        th:field="*{newsText}"></textarea>
+                        th:field="*{newsText}"
+                        th:errorclass="'is-invalid alert-danger'"></textarea>
+                <small class="invalid-feedback text-danger">Text cannot be empty!</small>
                 <label for="inputNewsURL" style="color: white" class="sr-only">URL</label>
+                </div>
+                <div data-mdb-input-init class="form-outline mb-4">
                 <input type="text"
                        class="form-control mx-2"
                        id="inputNewsURL" placeholder="Image URL"
-                       th:field="*{newsURL}">
+                       th:field="*{newsURL}"
+                       th:errorclass="'is-invalid alert-danger'">
+                <small class="invalid-feedback text-danger" >URL cannot be empty</small>
                 <button style="margin-top: 2em" type="submit" class="btn btn-outline-light ml-2">Submit news</button>
+                </div>
             </div>
         </form>
     </div>
