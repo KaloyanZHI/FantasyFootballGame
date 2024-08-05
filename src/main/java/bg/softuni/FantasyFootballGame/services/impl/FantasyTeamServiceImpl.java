@@ -81,18 +81,13 @@ public class FantasyTeamServiceImpl implements FantasyTeamService {
                 .orElseThrow(() -> new ObjectNotFoundException("User not found", playerId));
         FantasyTeam fantasyTeam = user.getFantasyTeam();
         List<Player> playersList = fantasyTeam.getPlayers();
-        Player playerById = new Player();
-        for (Player player : playersList) {
-            if (player.getId().equals(playerId)){
-                playerById = player;
-
-                break;
-            }
-        }
-
-            playersList.remove(playerById);
-            user.setBudget(user.getBudget() + playerById.getPrice());
-            fantasyTeamRepository.save(fantasyTeam);
+        Player playerById = playersList.stream()
+                .filter(player -> player.getId().equals(playerId))
+                .findFirst()
+                .orElseThrow(() -> new ObjectNotFoundException("Player not found", playerId));
+        playersList.remove(playerById);
+        user.setBudget(user.getBudget() + playerById.getPrice());
+        fantasyTeamRepository.save(fantasyTeam);
 
 
     }

@@ -22,8 +22,8 @@ public class SecurityConfig {
                                         "/news/all",
                                         "/rules",
                                         "/teams-and-players",
-                                        "successful-register",
-                                        "news/**",
+                                        "/successful-register",
+                                        "/news/**",
                                         "/login-error",
                                         "/error",
                                         "/rankings")
