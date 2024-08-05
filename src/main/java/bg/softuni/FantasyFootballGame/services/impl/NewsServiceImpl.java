@@ -96,7 +96,7 @@ public class NewsServiceImpl implements NewsService {
             throw new ObjectNotFoundException("News not found!", id);
 
         }
-        return modelMapper.map(newsById, News.class);
+        return modelMapper.map(newsById.get(), News.class);
 
     }
 
@@ -160,7 +160,7 @@ public class NewsServiceImpl implements NewsService {
         return curseWordsFound;
     }
 
-    private Set<String> loadBannedWords() throws IOException {
+    public Set<String> loadBannedWords() throws IOException {
         Set<String> bannedWords = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/static/list-banned-words.txt"))) {
             String line;

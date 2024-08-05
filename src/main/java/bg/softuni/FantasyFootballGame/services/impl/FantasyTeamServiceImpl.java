@@ -4,13 +4,12 @@ import bg.softuni.FantasyFootballGame.entities.FantasyTeam;
 import bg.softuni.FantasyFootballGame.entities.Player;
 import bg.softuni.FantasyFootballGame.entities.User;
 import bg.softuni.FantasyFootballGame.repositories.FantasyTeamRepository;
+import bg.softuni.FantasyFootballGame.repositories.PlayerRepository;
+import bg.softuni.FantasyFootballGame.repositories.UserRepository;
 import bg.softuni.FantasyFootballGame.services.FantasyTeamService;
 import bg.softuni.FantasyFootballGame.services.PlayerService;
 import bg.softuni.FantasyFootballGame.services.UserService;
-import bg.softuni.FantasyFootballGame.services.exceptions.BudgetExceededException;
-import bg.softuni.FantasyFootballGame.services.exceptions.MaximumPlayersExceededException;
-import bg.softuni.FantasyFootballGame.services.exceptions.PlayerAlreadyExistsException;
-import bg.softuni.FantasyFootballGame.services.exceptions.PlayerNotFoundException;
+import bg.softuni.FantasyFootballGame.services.exceptions.*;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +21,18 @@ import java.util.Objects;
 public class FantasyTeamServiceImpl implements FantasyTeamService {
    private final FantasyTeamRepository fantasyTeamRepository;
 
-   private final UserService userService;
 
-   private final PlayerService playerService;
-
+   private final UserRepository userRepository;
 
 
-    public FantasyTeamServiceImpl(FantasyTeamRepository fantasyTeamRepository, @Lazy UserService userService, PlayerService playerService) {
+   private final PlayerRepository playerRepository;
+
+
+
+    public FantasyTeamServiceImpl(FantasyTeamRepository fantasyTeamRepository, UserRepository userRepository, PlayerRepository playerRepository) {
         this.fantasyTeamRepository = fantasyTeamRepository;
-        this.userService = userService;
-        this.playerService = playerService;
+        this.userRepository = userRepository;
+        this.playerRepository = playerRepository;
     }
 
     @Override
@@ -52,34 +53,32 @@ public class FantasyTeamServiceImpl implements FantasyTeamService {
 
     @Override
     public void addPlayer(Long playerId, Principal principal) {
-        Player player = this.playerService.findPlayerById(playerId);
-        User user = this.userService.findByUsername(principal.getName());
+        Player player = this.playerRepository.findById(playerId)
+                .orElseThrow(() -> new ObjectNotFoundException("Player not found", playerId));
+        User user = this.userRepository.findByUsername(principal.getName())
+                .orElseThrow(() -> new ObjectNotFoundException("User not found", playerId));
 
         FantasyTeam fantasyTeam = user.getFantasyTeam();
         if (fantasyTeam.getPlayers().contains(player)){
             throw new PlayerAlreadyExistsException("Player already exists!", player.getFirstName(), player.getLastName());
         }
-        if (player != null){
-            if (fantasyTeam.getPlayers().size() == 11){
-                throw new MaximumPlayersExceededException("Maximum 11 players are allowed!");
-            }
-            if (user.getBudget() < player.getPrice()){
-                throw new BudgetExceededException("Not enough budget!");
-            }
-            fantasyTeam.getPlayers().add(player);
-            user.setBudget(user.getBudget() - player.getPrice());
-            fantasyTeamRepository.save(fantasyTeam);
+        if (fantasyTeam.getPlayers().size() == 11) {
+            throw new MaximumPlayersExceededException("Maximum 11 players are allowed!");
         }
-        else {
-            throw new PlayerNotFoundException("No player found!");
+        if (user.getBudget() < player.getPrice()){
+            throw new BudgetExceededException("Not enough budget!");
         }
+        fantasyTeam.getPlayers().add(player);
+        user.setBudget(user.getBudget() - player.getPrice());
+        fantasyTeamRepository.save(fantasyTeam);
 
 
     }
 
     @Override
     public void removePlayer(Long playerId, Principal principal) {
-        User user = this.userService.findByUsername(principal.getName());
+        User user = this.userRepository.findByUsername(principal.getName())
+                .orElseThrow(() -> new ObjectNotFoundException("User not found", playerId));
         FantasyTeam fantasyTeam = user.getFantasyTeam();
         List<Player> playersList = fantasyTeam.getPlayers();
         Player playerById = new Player();

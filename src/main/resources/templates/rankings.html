@@ -23,7 +23,7 @@
                 <tr th:each="team, iterStat : ${rankedTeams}" th:object="${team}">
                     <th scope="row" th:text="${iterStat.index + 1}">1</th>
                     <td th:text="${team.getTeamName()}">Mark</td>
-                    <td th:text="${team.getTotalTeamPoints()}">Otto</td>
+                    <td th:text="${#numbers.formatDecimal(team.getTotalTeamPoints(), 1, 2)}">Otto</td>
                 </tr>
                 </tbody>
             </table>
