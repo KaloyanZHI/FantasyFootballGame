@@ -17,16 +17,18 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * A service that manages The Fantasy Teams
+ */
 @Service
 public class FantasyTeamServiceImpl implements FantasyTeamService {
-   private final FantasyTeamRepository fantasyTeamRepository;
+    private final FantasyTeamRepository fantasyTeamRepository;
 
 
-   private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
 
-   private final PlayerRepository playerRepository;
-
+    private final PlayerRepository playerRepository;
 
 
     public FantasyTeamServiceImpl(FantasyTeamRepository fantasyTeamRepository, UserRepository userRepository, PlayerRepository playerRepository) {
@@ -35,6 +37,12 @@ public class FantasyTeamServiceImpl implements FantasyTeamService {
         this.playerRepository = playerRepository;
     }
 
+    /**
+     * Method that creates a new Fantasy Team
+     *
+     * @param teamName the name of the new team
+     * @return fantasyTeam
+     */
     @Override
     public FantasyTeam createFantasyTeam(String teamName) {
         FantasyTeam fantasyTeam = new FantasyTeam();
@@ -44,13 +52,22 @@ public class FantasyTeamServiceImpl implements FantasyTeamService {
 
     }
 
-
+    /**
+     * @param user Method that finds and returns the players in the user's Fantasy team
+     * @return List of players in the user's Fantasy team
+     */
 
     @Override
     public List<Player> findAllPlayers(User user) {
         return user.getFantasyTeam().getPlayers();
     }
 
+    /**
+     * Method that adds a player to a logged User's team
+     *
+     * @param playerId the id of the player to add
+     * @param principal the logged user
+     */
     @Override
     public void addPlayer(Long playerId, Principal principal) {
         Player player = this.playerRepository.findById(playerId)
@@ -59,13 +76,13 @@ public class FantasyTeamServiceImpl implements FantasyTeamService {
                 .orElseThrow(() -> new ObjectNotFoundException("User not found", playerId));
 
         FantasyTeam fantasyTeam = user.getFantasyTeam();
-        if (fantasyTeam.getPlayers().contains(player)){
+        if (fantasyTeam.getPlayers().contains(player)) {
             throw new PlayerAlreadyExistsException("Player already exists!", player.getFirstName(), player.getLastName());
         }
         if (fantasyTeam.getPlayers().size() == 11) {
             throw new MaximumPlayersExceededException("Maximum 11 players are allowed!");
         }
-        if (user.getBudget() < player.getPrice()){
+        if (user.getBudget() < player.getPrice()) {
             throw new BudgetExceededException("Not enough budget!");
         }
         fantasyTeam.getPlayers().add(player);
@@ -74,6 +91,13 @@ public class FantasyTeamServiceImpl implements FantasyTeamService {
 
 
     }
+
+    /**
+     * Method that removes a player from a logged User's team
+     *
+     * @param playerId the id of the player to remove
+     * @param principal the logged user
+     */
 
     @Override
     public void removePlayer(Long playerId, Principal principal) {
@@ -92,16 +116,27 @@ public class FantasyTeamServiceImpl implements FantasyTeamService {
 
     }
 
+    /**
+     * Method that calculates calculates the points of all players in a team
+     * @param fantasyTeam the team which points are calculated
+     * @return total points
+     */
     @Override
     public Double calculateThisMatchPoints(FantasyTeam fantasyTeam) {
         double totalTeamPoints = 0;
         List<Player> players = fantasyTeam.getPlayers();
         for (Player player : players) {
-            totalTeamPoints+=player.getPoints();
+            totalTeamPoints += player.getPoints();
         }
 
         return totalTeamPoints;
     }
+
+    /**
+     * Method that resets the points of all fantasy teams to 0.
+     * Used at the start of the season so every team stars with 0 points
+     * @param fantasyTeams all fantasy teams
+     */
 
     @Override
     public void resetEverything(List<FantasyTeam> fantasyTeams) {
@@ -111,12 +146,14 @@ public class FantasyTeamServiceImpl implements FantasyTeamService {
         }
     }
 
+    /**
+     *
+     * Method that returns all fantasy teams
+     */
     @Override
     public List<FantasyTeam> findAllFantasyTeams() {
         return this.fantasyTeamRepository.findAll();
     }
-
-
 
 
 }

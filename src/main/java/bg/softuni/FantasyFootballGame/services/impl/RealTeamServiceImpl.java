@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * A service that manages the real teams
+ */
 @Service
 public class RealTeamServiceImpl implements RealTeamService {
     private static final String REAL_TEAMS_FILE_PATH = "src/main/resources/jsonData/realTeams.json";
@@ -29,6 +32,10 @@ public class RealTeamServiceImpl implements RealTeamService {
         this.playerRepository = playerRepository;
     }
 
+    /**
+     *
+     * Method that reads the real teams details from a JSON file
+     */
     @Override
     public String readTeamFromFile() throws IOException {
         return Files.readString(Path.of(REAL_TEAMS_FILE_PATH));
@@ -36,12 +43,21 @@ public class RealTeamServiceImpl implements RealTeamService {
 
     }
 
+    /**
+     *
+     * Method that returns all the real teams
+     */
     @Override
     public List<RealTeam> findAllRealTeams() {
         return this.realTeamRepository.findAll();
 
     }
 
+    /**
+     *
+     * Method that seeds the database with some real teams read from a JSON file
+     * Made for test purposes
+     */
 
     @Override
     public void seedRealTeams() throws IOException {

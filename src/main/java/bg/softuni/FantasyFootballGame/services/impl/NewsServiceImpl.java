@@ -19,6 +19,11 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * A service that manages article news.
+ * This service provides methods for creating, and deleting news articles,
+ * as well as retrieving them by various criteria.
+ */
 @Service
 public class NewsServiceImpl implements NewsService {
     private final NewsRepository newsRepository;
@@ -33,6 +38,10 @@ public class NewsServiceImpl implements NewsService {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * Method that seed the database with initial news, so the database is not empty.
+     * It is made for testing purposes
+     */
     @Override
     public void seedNews() {
         News euroCupNews = new News();
@@ -82,6 +91,10 @@ public class NewsServiceImpl implements NewsService {
 
     }
 
+    /**
+     *
+     * Method that returns all the news
+     */
     @Override
     public List<News> findAllNews() {
         List<News> allNews = this.newsRepository.findAll();
@@ -89,6 +102,11 @@ public class NewsServiceImpl implements NewsService {
         return allNews;
     }
 
+    /**
+     * Method that searches a news by id
+     * @param id The id of the news to find
+     * @return found News
+     */
     @Override
     public News findNewsById(Long id) {
         Optional<News> newsById = this.newsRepository.findById(id);
@@ -100,6 +118,10 @@ public class NewsServiceImpl implements NewsService {
 
     }
 
+    /**
+     * Method that deletes a news by id
+     * @param id The id of the news to delete
+     */
     @Override
     public void deleteNews(Long id) {
         News news = this.newsRepository.findById(id)
@@ -108,6 +130,11 @@ public class NewsServiceImpl implements NewsService {
         this.newsRepository.delete(news);
     }
 
+    /**
+     * Method that creates a new news article by the logged user
+     * @param dto newly created news
+     * @param principal logged user
+     */
     @Override
     public void createNews(WriteNewsDTO dto, Principal principal) {
         Optional<News> optionalNews = this.newsRepository.findByNewsHeader(dto.getNewsHeader());
@@ -125,6 +152,12 @@ public class NewsServiceImpl implements NewsService {
         }
     }
 
+    /**
+     * Method that checks all the news for curse words and delete the article if it finds one
+     * It is implemented with a scheduler that searches though the news every 10 seconds
+     * @return boolean if curse words are found
+     * @throws IOException throws exception
+     */
 
     @Override
     public boolean checkForCurseWords() throws IOException {
@@ -160,6 +193,11 @@ public class NewsServiceImpl implements NewsService {
         return curseWordsFound;
     }
 
+    /**
+     * Method that reads a list of curse words from file
+     * @return a list of the banned words
+     * @throws IOException throws exception
+     */
     public Set<String> loadBannedWords() throws IOException {
         Set<String> bannedWords = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/static/list-banned-words.txt"))) {

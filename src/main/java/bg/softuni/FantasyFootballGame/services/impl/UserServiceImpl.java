@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * A service that manages all the users, their registration, login etc...
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -42,6 +45,11 @@ public class UserServiceImpl implements UserService {
         this.roleRepository = roleRepository;
     }
 
+    /**
+     * Method that registers a user
+     * @param dto data of the user to register
+     * @return boolean if the registration is successful or not
+     */
     @Override
     public boolean register(UserRegisterDTO dto) {
 
@@ -66,6 +74,10 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * Method that seeds the database with two users, one with user and admin role and  one only with user role
+     * Made for  testing purposes
+     */
     @Override
     public void seedUsers() {
         User user = new User();
@@ -97,21 +109,39 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * Method that checks if the password and the confirm password match
+     * @param user data of the registered user
+     * @return boolean if password mathces
+     */
     @Override
     public boolean passwordMatches(UserRegisterDTO user) {
         return user.getPassword().equals(user.getConfirmPassword());
     }
 
+    /**
+     * Method that checks if a user with the same username already exists
+     * @param userRegisterDTO a user to register
+     * @return boolean if user already exists
+     */
     @Override
     public boolean checkIfUserWithSameUsernameExists(UserRegisterDTO userRegisterDTO) {
         return this.userRepository.findByUsername(userRegisterDTO.getUsername()).isPresent();
     }
-
+    /**
+     * Method that checks if a user with the same email already exists
+     * @param userRegisterDTO a user to register
+     * @return boolean if user already exists
+     */
     @Override
     public boolean checkIfUserWithSameEmailExists(UserRegisterDTO userRegisterDTO) {
         return this.userRepository.findByEmail(userRegisterDTO.getEmail()).isPresent();
     }
-
+    /**
+     * Method that checks if a user with the same fantasy team name already exists
+     * @param userRegisterDTO a user to register
+     * @return boolean if user already exists
+     */
     @Override
     public boolean checkIfUserWithSameTeamNameExists(UserRegisterDTO userRegisterDTO) {
         System.out.println(this.fantasyTeamRepository.findByTeamName(userRegisterDTO.getFantasyTeam()).isPresent());
@@ -119,29 +149,51 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * Method that searches for a user with a given username
+     * @param username that we search
+     * @return a user with this username
+     */
     @Override
     public User findByUsername(String username) {
         return this.userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User doesn't exist! Username: " + username));
     }
 
+    /**
+     * Method that searches for the fantasy team of the logged user
+     * @param principal a logged user
+     * @return user's fantasy team
+     */
     @Override
     public FantasyTeam findUserFantasyTeam(Principal principal) {
         User user = findByUsername(principal.getName());
         return user.getFantasyTeam();
     }
 
+    /**
+     * Method that searches and returns the current budget of a logged user
+     * @param principal logged user
+     * @return the current budget of the user
+     */
     @Override
     public Double findUserBudget(Principal principal) {
         User user = findByUsername(principal.getName());
         return user.getBudget();
     }
 
+    /**
+     * Method that returns all users
+     */
     @Override
     public List<User> findAllUsers() {
         return this.userRepository.findAll();
     }
 
+    /**
+     * Method that deletes a user with a given id
+     * @param id of the user to delete
+     */
     @Override
     public void deleteUser(Long id) {
         User user = this.userRepository.findById(id)
@@ -154,6 +206,11 @@ public class UserServiceImpl implements UserService {
         this.fantasyTeamRepository.delete(fantasyTeam);
     }
 
+    /**
+     * Method that finds a user by id and gives him admin role
+     * @param userRoleMap A user and a list of his roles
+     * @param id of the user
+     */
     @Override
     public void addRoles(Map<User, List<Role>> userRoleMap, Long id) {
         Role adminRole = this.roleRepository.findByName(UserRolesEnum.ADMIN);
@@ -172,6 +229,11 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * Method that finds a user by id and removes the admin role
+     * @param userRoleMap A user and a list of his roles
+     * @param userId of the user
+     */
     @Override
     public void removeRoles(Map<User, List<Role>> userRoleMap, Long userId) {
         Role adminRole = this.roleRepository.findByName(UserRolesEnum.ADMIN);
