@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = RankingsController.class)
 @Import({WebConfig.class, I18NConfig.class, TestSecurityConfig.class})
- class RankingsControllerTest {
+class RankingsControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

@@ -70,6 +70,6 @@ public class HomeControllerIntegrationTest {
     public void testGoLogout() throws Exception {
         mockMvc.perform(get("/logout"))
                 .andExpect(status().isFound()) // 302
-                .andExpect(redirectedUrl("/login?logout")); // Redirect URL
+                .andExpect(redirectedUrl("/login?logout"));
     }
 }
