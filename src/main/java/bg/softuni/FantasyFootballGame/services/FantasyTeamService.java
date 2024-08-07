@@ -24,4 +24,6 @@ public interface FantasyTeamService {
    void resetEverything(List<FantasyTeam> fantasyTeams);
 
    List<FantasyTeam> findAllFantasyTeams();
+
+
 }

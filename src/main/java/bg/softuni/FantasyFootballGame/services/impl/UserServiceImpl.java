@@ -146,7 +146,6 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         User user = this.userRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("User not found!", id));
-
         this.userRepository.delete(user);
     }
 
@@ -155,16 +154,15 @@ public class UserServiceImpl implements UserService {
         Role adminRole = this.roleRepository.findByName(UserRolesEnum.ADMIN);
         User user = this.userRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("User not found", id));
-        for (Map.Entry<User, List<Role>> entry : userRoleMap.entrySet()){
-            if (entry.getKey() == user){
-                if (entry.getValue().size() > 1){
+        for (Map.Entry<User, List<Role>> entry : userRoleMap.entrySet()) {
+            if (entry.getKey() == user) {
+                if (entry.getValue().size() > 1) {
                     System.out.println("Already an admin!");
                 }
                 entry.getValue().add(adminRole);
                 this.userRepository.save(user);
             }
         }
-
 
 
     }
@@ -175,13 +173,12 @@ public class UserServiceImpl implements UserService {
         User user = this.userRepository
                 .findById(userId)
                 .orElseThrow(() -> new ObjectNotFoundException("User not found", userId));
-        for (Map.Entry<User, List<Role>> entry : userRoleMap.entrySet()){
-            if (entry.getKey() == user){
+        for (Map.Entry<User, List<Role>> entry : userRoleMap.entrySet()) {
+            if (entry.getKey() == user) {
                 entry.getValue().remove(adminRole);
                 this.userRepository.save(user);
             }
         }
-
 
 
     }
