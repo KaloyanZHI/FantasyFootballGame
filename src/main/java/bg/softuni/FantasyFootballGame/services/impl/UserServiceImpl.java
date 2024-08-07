@@ -146,7 +146,12 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         User user = this.userRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("User not found!", id));
+        FantasyTeam fantasyTeam = this.fantasyTeamRepository.findById(user.getFantasyTeam().getId())
+                .orElseThrow(() -> new ObjectNotFoundException("Team not found!", id));
+
+
         this.userRepository.delete(user);
+        this.fantasyTeamRepository.delete(fantasyTeam);
     }
 
     @Override
